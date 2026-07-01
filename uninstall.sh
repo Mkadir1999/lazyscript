@@ -23,6 +23,7 @@ then
 		sleep 4
 		if [ -d /usr/local/bin/lscript ]; then rm -r /usr/local/bin/lscript; fi
 		if [ -d /bin/lscript ]; then rm -r /bin/lscript; fi
+		rm -f /usr/local/bin/lazy /usr/local/bin/l 2>/dev/null
 		if grep -q "/usr/local/bin/lscript" ~/.bashrc 2>/dev/null
 		then
 			sed -i 's|export PATH=/usr/local/bin/lscript:$PATH||g' ~/.bashrc

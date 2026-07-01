@@ -5,6 +5,8 @@
 - Install copies `/usr/local/bin/lscript/lazy`; `l` still works for backward compatibility.
 - `~/.bashrc` aliases updated on install/update; README recommends `lazy` first.
 - Settings (`lscript.conf.example`), docs, labcheck, and update-kali messages now say **`lazy`**.
+- FIXED install update path (`--yes` when already installed) skipped lazy alias — launchers now run on every install/update.
+- NEW `/usr/local/bin/lazy` symlink so `lazy` works without relying on `.bashrc` alias alone.
 
 2.2.1
 ==== Hotfix: bash syntax + line endings ====

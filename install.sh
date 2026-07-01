@@ -28,6 +28,39 @@ lscript_fix_line_endings()
 	done
 }
 
+lscript_setup_launchers()
+{
+	chmod +x /usr/local/bin/lscript/l /usr/local/bin/lscript/lazy 2>/dev/null || true
+	ln -sf /usr/local/bin/lscript/lazy /usr/local/bin/lazy
+	ln -sf /usr/local/bin/lscript/l /usr/local/bin/l 2>/dev/null || true
+	echo -e "Launchers: /usr/local/bin/lazy (and /usr/local/bin/lscript/lazy)"
+	if ! grep -q "/usr/local/bin/lscript" ~/.bashrc 2>/dev/null
+	then
+		echo "export PATH=/usr/local/bin/lscript:\$PATH" >> ~/.bashrc
+	fi
+	export PATH=/usr/local/bin/lscript:$PATH
+	if ! grep -q "alias lazy=" ~/.bashrc 2>/dev/null
+	then
+		if grep -q "lscript launcher" ~/.bashrc 2>/dev/null
+		then
+			sed -i "/unalias l/i alias lazy='/usr/local/bin/lscript/lazy'" ~/.bashrc
+		else
+			cat >> ~/.bashrc <<'EOF'
+# lscript launchers — use lazy (l conflicts with ls on Ubuntu/Kali)
+alias lazy='/usr/local/bin/lscript/lazy'
+unalias l 2>/dev/null || true
+alias l='/usr/local/bin/lscript/l'
+EOF
+		fi
+	fi
+	if [[ -f /root/lscript/lib/lscript_utils.sh ]]
+	then
+		# shellcheck source=/dev/null
+		source /root/lscript/lib/lscript_utils.sh
+		lscript_install_update_kali_alias 2>/dev/null || true
+	fi
+}
+
 if [[ -f "$DIR/lib/lscript_term.sh" ]]
 then
 	# shellcheck source=/dev/null
@@ -129,6 +162,7 @@ cp /root/lscript/lh41 /usr/local/bin/lscript
 cp /root/lscript/lh21 /usr/local/bin/lscript
 cp /root/lscript/lh42 /usr/local/bin/lscript
 cp /root/lscript/lh43 /usr/local/bin/lscript
+lscript_setup_launchers
 clear
 apt-get -y install ncurses-dev 2>/dev/null || true
 clear
@@ -180,43 +214,14 @@ fi
 if [[ "$UORI" = "u" ]]
 then
 	clear
+	echo -e "Update complete — lazy launcher refreshed."
 	echo -e "Type 'changelog' to see what's new on this version"
 	[[ "$NONINTERACTIVE" -eq 0 ]] && sleep 3
 elif [[ "$UORI" = "i" ]]
 then
 	clear
-	if grep -q "bin/lscript" ~/.bashrc 2>/dev/null
-	then
-		echo -e "PATH already configured in .bashrc (skipping duplicate export)."
-		[[ "$NONINTERACTIVE" -eq 0 ]] && sleep 2
-	fi
-	echo -e "Adding lscript to PATH so you can access it from anywhere"
-	export PATH=/usr/local/bin/lscript:$PATH
-	if ! grep -q "/usr/local/bin/lscript" ~/.bashrc 2>/dev/null
-	then
-		echo "export PATH=/usr/local/bin/lscript:\$PATH" >> ~/.bashrc
-	fi
-	if ! grep -q "alias lazy=" ~/.bashrc 2>/dev/null
-	then
-		if grep -q "lscript launcher" ~/.bashrc 2>/dev/null
-		then
-			sed -i "/unalias l/i alias lazy='/usr/local/bin/lscript/lazy'" ~/.bashrc
-		else
-			cat >> ~/.bashrc <<'EOF'
-# lscript launchers — use lazy (l conflicts with ls on Ubuntu/Kali)
-alias lazy='/usr/local/bin/lscript/lazy'
-unalias l 2>/dev/null || true
-alias l='/usr/local/bin/lscript/l'
-EOF
-		fi
-	fi
-	if [[ -f /root/lscript/lib/lscript_utils.sh ]]
-	then
-		# shellcheck source=/dev/null
-		source /root/lscript/lib/lscript_utils.sh
-		lscript_install_update_kali_alias
-	fi
-	[[ "$NONINTERACTIVE" -eq 0 ]] && sleep 1
+	echo -e "First-time install — PATH and lazy launcher configured."
+	[[ "$NONINTERACTIVE" -eq 0 ]] && sleep 2
 	clear
 fi
 
@@ -224,7 +229,7 @@ clear
 echo -e "DONE"
 if [[ "$NONINTERACTIVE" -eq 1 ]]
 then
-	echo -e "Non-interactive install complete. Open a terminal and type: lazy"
+	echo -e "Non-interactive install complete. Type: lazy"
 	exit 0
 fi
 sleep 1
