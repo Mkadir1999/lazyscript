@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # set -x
-VERSION=2.2.1
+VERSION=2.2.2
 LSCRIPT_GITHUB_USER="Mkadir1999"
 LSCRIPT_GITHUB_REPO="lscript-2"
 LSCRIPT_GITHUB_BRANCH="main"
@@ -22,7 +22,7 @@ unset _lscript_lib
 HOWMANYTOOLS=53
 BACKL="0"
 DONATIONS=13
-LATESTCHANGELOGLINES=10
+LATESTCHANGELOGLINES=8
 cd
 #############DEFAULTS###############
 function defaults_l
@@ -321,7 +321,7 @@ function banner
 		echo -e ""$YS" 2"$CE") Enable $WLANNM${SPACESM}"$YS"d2"$CE") Disable $WLANNM${SPACESM}  "$RS"|"$CE"  "$YS"stop"$CE") Stop monitor mode"
 	fi
 	echo -e ""$YS" 3"$CE") Change MAC        "$YS"d3"$CE") Restore original MAC "$RS"|"$CE""$YS"update"$CE") lscript update    "$YS"update-kali"$CE") apt upgrade"
-	echo -e ""$RS"|"$CE"  "$YS"spoof"$CE") Lab / spoof menu   "$YS"labcheck"$CE") Verify lab setup   "$YS"doctor"$CE") Health check"
+	echo -e ""$RS"|"$CE"  "$YS"lazy"$CE") Launch lscript   "$YS"spoof"$CE") Lab menu   "$YS"doctor"$CE") Health check"
 	if [[ -f /usr/bin/anonym8 ]]
 	then
 	echo -e ""$YS" 4"$CE") Enable anonym8    "$YS"d4"$CE") Disable anonym8      "$RS"|"$CE""$YS"errors"$CE") Fix some errors"
@@ -512,7 +512,7 @@ function checkifalready
 	done
 	if [[ "$GOOD" = "1" ]]
 	then
-		if [[ "$CHECKKS" = "etercheck" || "$CHECKKS" = "eternalblue" || "$CHECKKS" = "changelog" || "$CHECKKS" = "wififb" || "$CHECKKS" = "nessusstop" || "$CHECKKS" = "nessusstart" || "$CHECKKS" = "pstop" || "$CHECKKS" = "pstart" || "$CHECKKS" = "astop" || "$CHECKKS" = "astart" || "$CHECKKS" = "settings" || "$CHECKKS" = "disclaimer" || "$CHECKKS" = "d" || "$CHECKKS" = "s" || "$CHECKKS" = "g" || "$CHECKKS" = "l" || "$CHECKKS" = "" || "$CHECKKS" = "if" || "$CHECKKS" = "ifconfig" || "$CHECKKS" = "interfaces" || "$CHECKKS" = "interface" || "$CHECKKS" = "errors" || "$CHECKKS" = "00" || "$CHECKKS" = "exit" || "$CHECKKS" = "update" || "$CHECKKS" = "spoof" || "$CHECKKS" = "lab" || "$CHECKKS" = "labcheck" || "$CHECKKS" = "d1" || "$CHECKKS" = "d2" || "$CHECKKS" = "d3" || "$CHECKKS" = "d4" || "$CHECKKS" = "d5" || "$CHECKKS" = "d6" || "$CHECKKS" = "d7" || "$CHECKKS" = "gg" || "$CHECKKS" = "ks" || "$CHECKKS" = "doctor" || "$CHECKKS" = "health" || "$CHECKKS" = "refresh" || "$CHECKKS" = "toolsup" || "$CHECKKS" = "profile" || "$CHECKKS" = "profiles" || "$CHECKKS" = "psave" || "$CHECKKS" = "pload" || "$CHECKKS" = "pexport" || "$CHECKKS" = "pimport" || "$CHECKKS" = "backup" || "$CHECKKS" = "restore" || "$CHECKKS" = "rotate" || "$CHECKKS" = "rotatelogs" || "$CHECKKS" = "update-kali" || "$CHECKKS" = "updatekali" || "$CHECKKS" = "kaliupdate" || "$CHECKKS" = "kali-update" || "$CHECKKS" = "update-kali-yes" || "$CHECKKS" = "updatekali-yes" ]]
+		if [[ "$CHECKKS" = "etercheck" || "$CHECKKS" = "eternalblue" || "$CHECKKS" = "changelog" || "$CHECKKS" = "wififb" || "$CHECKKS" = "nessusstop" || "$CHECKKS" = "nessusstart" || "$CHECKKS" = "pstop" || "$CHECKKS" = "pstart" || "$CHECKKS" = "astop" || "$CHECKKS" = "astart" || "$CHECKKS" = "settings" || "$CHECKKS" = "disclaimer" || "$CHECKKS" = "d" || "$CHECKKS" = "s" || "$CHECKKS" = "g" || "$CHECKKS" = "l" || "$CHECKKS" = "" || "$CHECKKS" = "if" || "$CHECKKS" = "ifconfig" || "$CHECKKS" = "interfaces" || "$CHECKKS" = "interface" || "$CHECKKS" = "errors" || "$CHECKKS" = "00" || "$CHECKKS" = "exit" || "$CHECKKS" = "update" || "$CHECKKS" = "lazy" || "$CHECKKS" = "spoof" || "$CHECKKS" = "lab" || "$CHECKKS" = "labcheck" || "$CHECKKS" = "d1" || "$CHECKKS" = "d2" || "$CHECKKS" = "d3" || "$CHECKKS" = "d4" || "$CHECKKS" = "d5" || "$CHECKKS" = "d6" || "$CHECKKS" = "d7" || "$CHECKKS" = "gg" || "$CHECKKS" = "ks" || "$CHECKKS" = "doctor" || "$CHECKKS" = "health" || "$CHECKKS" = "refresh" || "$CHECKKS" = "toolsup" || "$CHECKKS" = "profile" || "$CHECKKS" = "profiles" || "$CHECKKS" = "psave" || "$CHECKKS" = "pload" || "$CHECKKS" = "pexport" || "$CHECKKS" = "pimport" || "$CHECKKS" = "backup" || "$CHECKKS" = "restore" || "$CHECKKS" = "rotate" || "$CHECKKS" = "rotatelogs" || "$CHECKKS" = "update-kali" || "$CHECKKS" = "updatekali" || "$CHECKKS" = "kaliupdate" || "$CHECKKS" = "kali-update" || "$CHECKKS" = "update-kali-yes" || "$CHECKKS" = "updatekali-yes" ]]
 		then
 			GOOD="0"
 			echo -e ""$RS"This shortcut is already in use by the script."$CE""

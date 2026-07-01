@@ -1,4 +1,4 @@
-# lscript v2.2.0 — Feature Reference
+# lscript v2.2.2 — Feature Reference
 
 **LAZY script (lscript)** is a Bash automation toolkit for **Kali Linux** that wraps WiFi penetration testing, MITM workflows, and 90+ third-party security tools behind a single command: `l`.
 
@@ -21,6 +21,8 @@ chmod +x install.sh
 ./install.sh --yes    # CI / automation
 
 # Run
+lazy
+# or (legacy)
 l
 ```
 
@@ -32,7 +34,8 @@ l
 
 | You type | What happens |
 |----------|----------------|
-| `l` | Opens the full interactive menu |
+| `lazy` | Opens the full interactive menu (**recommended** — no `ls` alias conflict) |
+| `l` | Same as `lazy` (legacy; may list files if `l` = `ls` on your shell) |
 | `start` | Enable monitor mode + MAC spoof in one step |
 | `stop` | Tear down monitor mode, restore interfaces |
 | `scan` | Scan for WiFi networks |
@@ -170,7 +173,7 @@ Open a new terminal and run `update-kali`.
 - Requires root
 - Auto-detects first install (`i`) vs update (`u`) from `~/.bashrc`
 - Skips keypress prompts; does not open a new terminal at the end
-- Prints: `Non-interactive install complete. Open a terminal and type: l`
+- Prints: `Non-interactive install complete. Open a terminal and type: lazy`
 
 ---
 
@@ -196,7 +199,7 @@ Open a new terminal and run `update-kali`.
 
 ```
 /root/lscript/
-├── l                 # main script (type `l` from PATH)
+├── l                 # main script (launchers: lazy or l)
 ├── lh1–lh43           # handshake, deauth, WPS, WEP helpers
 ├── ls/                # MITM helpers (l131, l132, l133)
 ├── lib/
@@ -261,4 +264,4 @@ Map any single key to launch a tool or built-in action without navigating menus.
 
 ## Version
 
-Current release: **2.2.0** — see [Changelog](Changelog) for full history.
+Current release: **2.2.2** — see [Changelog](Changelog) for full history.

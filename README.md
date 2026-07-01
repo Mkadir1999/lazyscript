@@ -1,6 +1,6 @@
-## Welcome to the LAZY script  v2.2.0
+## Welcome to the LAZY script  v2.2.2
 
-> **New in 2.2.0:** `spoof` / `lab` — training lab menu (DNS spoof, ARP MITM, scope, audit log). `labcheck` verifies your setup. See **[FEATURES.md](FEATURES.md)**.
+> **Launch with `lazy`** (recommended). On Ubuntu/Kali, `l` is often an alias for `ls` — use `lazy` or `command l`. See **[FEATURES.md](FEATURES.md)**.
 
 ### About
 
@@ -168,11 +168,11 @@ sudo ./install.sh
 sudo ./install.sh --yes
 ```
 
-The installer copies files to `/root/lscript`, adds `/usr/local/bin/lscript` to **root’s** PATH, and sets the `l` launcher alias in root’s `~/.bashrc`.
+The installer copies files to `/root/lscript`, adds `/usr/local/bin/lscript` to **root’s** PATH, and sets **`lazy`** (and `l`) launcher aliases in root’s `~/.bashrc`.
+
+**Health check:** run `lazy` as root, then type `doctor` or `labcheck`.
 
 **Configuration:** edit `/root/lscript/settings/lscript.conf` after install (paths, colors, MAC, log limits).
-
-**Health check:** run `l` as root, then type `doctor` or `labcheck`.
 
 See **[FEATURES.md](FEATURES.md)** for commands, directory layout, and platform notes.
 
@@ -182,39 +182,36 @@ lscript must run as **root** (WiFi, MITM, and most tools need root).
 
 ```bash
 sudo -i          # become root
-source ~/.bashrc # load PATH + l alias (first time)
-l                # launch the menu
+source ~/.bashrc # load PATH + lazy alias (first time)
+lazy             # launch the menu (recommended)
 ```
+
+`l` still works if the installer alias is loaded (`unalias l` fixes the common `l` = `ls` conflict).
 
 **One-liner without staying root:**
 
 ```bash
-sudo /usr/local/bin/lscript/l
+sudo /usr/local/bin/lscript/lazy
 ```
 
-**(Not even "lazy"!! Just "l"! The less you type, the better!)**
+**The LAZY script — type `lazy` and go.**
 
 ### Troubleshooting
 
 #### `l` only lists files (shows Changelog, README, l, lh1…)
 
-On **Ubuntu** and some other distros, `l` is an **alias for `ls`**. That runs *before* lscript, so you get a directory listing instead of the menu.
-
-**Fix — run as root after install:**
+On **Ubuntu** and some other distros, `l` is an **alias for `ls`**. Use **`lazy`** instead:
 
 ```bash
 sudo -i
-unalias l 2>/dev/null
 source ~/.bashrc
-l
+lazy
 ```
 
-If it still lists files:
+If `lazy` is not found, reinstall or run:
 
 ```bash
-command l
-# or
-/usr/local/bin/lscript/l
+sudo /usr/local/bin/lscript/lazy
 ```
 
 **Fresh install** (from your clone folder):

@@ -1,3 +1,10 @@
+2.2.2
+==== `lazy` launcher command ====
+
+- NEW primary command: **`lazy`** — launches lscript without fighting Ubuntu/Kali `l` = `ls` alias.
+- Install copies `/usr/local/bin/lscript/lazy`; `l` still works for backward compatibility.
+- `~/.bashrc` aliases updated on install/update; README recommends `lazy` first.
+
 2.2.1
 ==== Hotfix: bash syntax + line endings ====
 

@@ -119,6 +119,7 @@ sleep 1
 mkdir -p /usr/local/bin/lscript
 cd /root/lscript
 cp /root/lscript/l /usr/local/bin/lscript
+cp /root/lscript/l /usr/local/bin/lscript/lazy
 cp /root/lscript/lh1 /usr/local/bin/lscript
 cp /root/lscript/lh2 /usr/local/bin/lscript
 cp /root/lscript/lh3 /usr/local/bin/lscript
@@ -195,13 +196,19 @@ then
 	then
 		echo "export PATH=/usr/local/bin/lscript:\$PATH" >> ~/.bashrc
 	fi
-	if ! grep -q "lscript launcher" ~/.bashrc 2>/dev/null
+	if ! grep -q "alias lazy=" ~/.bashrc 2>/dev/null
 	then
-		cat >> ~/.bashrc <<'EOF'
-# lscript launcher (overrides Ubuntu l=ls alias)
+		if grep -q "lscript launcher" ~/.bashrc 2>/dev/null
+		then
+			sed -i "/unalias l/i alias lazy='/usr/local/bin/lscript/lazy'" ~/.bashrc
+		else
+			cat >> ~/.bashrc <<'EOF'
+# lscript launchers — use lazy (l conflicts with ls on Ubuntu/Kali)
+alias lazy='/usr/local/bin/lscript/lazy'
 unalias l 2>/dev/null || true
 alias l='/usr/local/bin/lscript/l'
 EOF
+		fi
 	fi
 	if [[ -f /root/lscript/lib/lscript_utils.sh ]]
 	then
@@ -217,12 +224,12 @@ clear
 echo -e "DONE"
 if [[ "$NONINTERACTIVE" -eq 1 ]]
 then
-	echo -e "Non-interactive install complete. Open a terminal and type: l"
+	echo -e "Non-interactive install complete. Open a terminal and type: lazy"
 	exit 0
 fi
 sleep 1
 clear
-echo -e "Open a NEW terminal and type 'l' to launch the script"
+echo -e "Open a NEW terminal and type 'lazy' to launch the script"
 sleep 4
-lscript_open_term "l"
+lscript_open_term "lazy"
 exit
