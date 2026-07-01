@@ -226,9 +226,14 @@ Open a new terminal and run `update-kali`.
 |-------------|------------|-------|
 | **Kali Linux (bare metal)** | Full | Recommended |
 | **Kali VM + USB WiFi passthrough** | Full | Pass adapter to VM |
-| **WSL2** | Limited / none | lscript warns on startup; use native Kali instead |
+| **WSL2 / Ubuntu on Windows** | Limited / none | Menu and CLI tools work; wireless labs do not. See **[README — Troubleshooting](README.md#troubleshooting)** (`l` = `ls` alias, `sudo -i`, install steps). |
 
 ---
+
+## Troubleshooting
+
+Full install and launch help (Ubuntu `l` alias, WSL, root, `command l`): **[README.md — Troubleshooting](README.md#troubleshooting)**.
+
 
 ## Uninstall
 

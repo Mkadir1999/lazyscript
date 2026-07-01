@@ -183,6 +183,14 @@ then
 	then
 		echo "export PATH=/usr/local/bin/lscript:\$PATH" >> ~/.bashrc
 	fi
+	if ! grep -q "lscript launcher" ~/.bashrc 2>/dev/null
+	then
+		cat >> ~/.bashrc <<'EOF'
+# lscript launcher (overrides Ubuntu l=ls alias)
+unalias l 2>/dev/null || true
+alias l='/usr/local/bin/lscript/l'
+EOF
+	fi
 	if [[ -f /root/lscript/lib/lscript_utils.sh ]]
 	then
 		# shellcheck source=/dev/null

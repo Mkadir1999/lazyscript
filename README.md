@@ -148,44 +148,122 @@ View your MAC faster
 	+more
 		
 # How to install (Kali Linux)
-(make sure you are a root user)
 
+**MADE FOR KALI LINUX** (native install with a real WiFi adapter). Ubuntu on WSL is supported for the menu and many tools, but **not for wireless attacks** — see [Troubleshooting](#troubleshooting) below.
 
-**Be carefull.If you download it as a .zip file, it will not run.Make sure to follow these simple instructions.**
+**Be careful:** if you download as a `.zip`, it will not run. Clone with `git` and run `install.sh`.
 
-**MADE FOR KALI LINUX**
-
-```
+```bash
 cd
 apt-get update
 git clone https://github.com/Mkadir1999/lscript-2.git
 cd lscript-2
 chmod +x install.sh
-./install.sh
+sudo ./install.sh
 ```
 
 **Non-interactive (CI / automation):**
 
+```bash
+sudo ./install.sh --yes
 ```
-./install.sh --yes
-```
+
+The installer copies files to `/root/lscript`, adds `/usr/local/bin/lscript` to **root’s** PATH, and sets the `l` launcher alias in root’s `~/.bashrc`.
 
 **Configuration:** edit `/root/lscript/settings/lscript.conf` after install (paths, colors, MAC, log limits).
 
-**Health check:** run `l` then type `doctor`.
+**Health check:** run `l` as root, then type `doctor` or `labcheck`.
 
 See **[FEATURES.md](FEATURES.md)** for commands, directory layout, and platform notes.
 
 ### How to run it
 
-(make sure you are a root user)
+lscript must run as **root** (WiFi, MITM, and most tools need root).
 
+```bash
+sudo -i          # become root
+source ~/.bashrc # load PATH + l alias (first time)
+l                # launch the menu
 ```
-open terminal
-type  "l"
-press enter
+
+**One-liner without staying root:**
+
+```bash
+sudo /usr/local/bin/lscript/l
 ```
-**(Not even "lazy"!! Just "l"! The less you type , the better!)**
+
+**(Not even "lazy"!! Just "l"! The less you type, the better!)**
+
+### Troubleshooting
+
+#### `l` only lists files (shows Changelog, README, l, lh1…)
+
+On **Ubuntu** and some other distros, `l` is an **alias for `ls`**. That runs *before* lscript, so you get a directory listing instead of the menu.
+
+**Fix — run as root after install:**
+
+```bash
+sudo -i
+unalias l 2>/dev/null
+source ~/.bashrc
+l
+```
+
+If it still lists files:
+
+```bash
+command l
+# or
+/usr/local/bin/lscript/l
+```
+
+**Fresh install** (from your clone folder):
+
+```bash
+cd ~/lscript-2
+chmod +x install.sh
+sudo ./install.sh --yes
+sudo -i
+l
+```
+
+#### Installed but command not found
+
+```bash
+sudo -i
+export PATH=/usr/local/bin/lscript:$PATH
+l
+```
+
+Check the binary exists:
+
+```bash
+ls -la /usr/local/bin/lscript/l
+ls -la /root/lscript/l
+```
+
+#### Ubuntu on Windows (WSL / WSL2)
+
+| Works | Does not work |
+|--------|----------------|
+| Menu, install, `doctor`, `labcheck`, many CLI tools | Real WiFi monitor mode, handshake capture, WPS/WEP over wireless |
+| `spoof` / MITM labs on a **wired** lab network | USB WiFi passthrough (hard to set up; often unreliable) |
+
+- Install from your clone: `cd ~/lscript-2 && sudo ./install.sh --yes`
+- Always launch as root: `sudo -i` then `l`
+- lscript will show a **WSL warning** on startup — expected
+- For full WiFi labs, use **native Kali** on bare metal or a VM with USB WiFi passthrough
+
+#### Still stuck?
+
+Run these as your normal user and paste the output in a GitHub issue:
+
+```bash
+which l
+type l
+ls -la /usr/local/bin/lscript/l
+sudo /usr/local/bin/lscript/l
+```
 
 ### How to uninstall
 ``` 
