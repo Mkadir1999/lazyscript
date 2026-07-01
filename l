@@ -5,6 +5,7 @@ VERSION=2.1.8
 LSCRIPT_GITHUB_USER="Mkadir1999"
 LSCRIPT_GITHUB_REPO="lscript-2"
 LSCRIPT_GITHUB_BRANCH="main"
+LSCRIPT_AUTHOR="KDR"
 LSCRIPT_GITHUB_URL="https://github.com/${LSCRIPT_GITHUB_USER}/${LSCRIPT_GITHUB_REPO}.git"
 LSCRIPT_RAW_VERSION_URL="https://raw.githubusercontent.com/${LSCRIPT_GITHUB_USER}/${LSCRIPT_GITHUB_REPO}/${LSCRIPT_GITHUB_BRANCH}/version.txt"
 LPATH="${LPATH:-/root/lscript}"
@@ -304,7 +305,7 @@ function banner
 	echo -e ""
 	echo -e "$COL         ██╗      █████╗ ███████╗██╗   ██╗$CE v$VERSION"
 	echo -e "$COL         ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝$CE"
-	echo -e "$COL         ██║     ███████║  ███╔╝  ╚████╔╝ $CE   by "$COL"MKADIR1999$CE"
+	echo -e "$COL         ██║     ███████║  ███╔╝  ╚████╔╝ $CE   by "$COL"$LSCRIPT_AUTHOR$CE"
 	echo -e "$COL         ██║     ██╔══██║ ███╔╝    ╚██╔╝  $CE"
 	echo -e "$COL    The  ███████╗██║  ██║███████╗   ██║  script$CE"
 	echo -e "$COL         ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   $CE"
@@ -328,10 +329,10 @@ function banner
 	if [[ -f /usr/bin/anonsurf ]]
 	then
 	echo -e ""$YS" 5"$CE") Enable anonsurf   "$YS"d5"$CE") Disable anonsurf     "$RS"|"$CE"    "$YS"ks"$CE") Keyboard shortucts"
-	echo -e ""$YS" 6"$CE") Anonsurf's status "$YS"d6"$CE") Restart anonsurf     "$RS"|"$CE""$YS"     d"$CE") Buy me a coffee"
+	echo -e ""$YS" 6"$CE") Anonsurf's status "$YS"d6"$CE") Restart anonsurf     "$RS"|"$CE""$YS"     d"$CE") Disclaimer"
 	else
 	echo -e ""$RS" 5"$CE") Enable anonsurf   "$RS"d5"$CE") Disable anonsurf     "$RS"|"$CE"    "$YS"ks"$CE") Keyboard shortucts"
-	echo -e ""$RS" 6"$CE") Anonsurf's status "$RS"d6"$CE") Restart anonsurf     "$RS"|"$CE"     "$YS"d"$CE") Buy me a coffee"
+	echo -e ""$RS" 6"$CE") Anonsurf's status "$RS"d6"$CE") Restart anonsurf     "$RS"|"$CE"     "$YS"d"$CE") Disclaimer"
 	fi
 	echo -e ""$YS" 7"$CE") View public IP                             "$RS"|"$CE"     "$YS"s"$CE") Go to settings menu"
 	echo -e ""$YS" 8"$CE") View MAC"
@@ -509,7 +510,7 @@ function checkifalready
 	done
 	if [[ "$GOOD" = "1" ]]
 	then
-		if [[ "$CHECKKS" = "etercheck" || "$CHECKKS" = "eternalblue" || "$CHECKKS" = "changelog" || "$CHECKKS" = "wififb" || "$CHECKKS" = "nessusstop" || "$CHECKKS" = "nessusstart" || "$CHECKKS" = "pstop" || "$CHECKKS" = "pstart" || "$CHECKKS" = "astop" || "$CHECKKS" = "astart" || "$CHECKKS" = "settings" || "$CHECKKS" = "donate" || "$CHECKKS" = "d" || "$CHECKKS" = "s" || "$CHECKKS" = "g" || "$CHECKKS" = "l" || "$CHECKKS" = "" || "$CHECKKS" = "if" || "$CHECKKS" = "ifconfig" || "$CHECKKS" = "interfaces" || "$CHECKKS" = "interface" || "$CHECKKS" = "errors" || "$CHECKKS" = "00" || "$CHECKKS" = "exit" || "$CHECKKS" = "update" || "$CHECKKS" = "d1" || "$CHECKKS" = "d2" || "$CHECKKS" = "d3" || "$CHECKKS" = "d4" || "$CHECKKS" = "d5" || "$CHECKKS" = "d6" || "$CHECKKS" = "d7" || "$CHECKKS" = "gg" || "$CHECKKS" = "ks" || "$CHECKKS" = "doctor" || "$CHECKKS" = "health" || "$CHECKKS" = "refresh" || "$CHECKKS" = "toolsup" || "$CHECKKS" = "profile" || "$CHECKKS" = "profiles" || "$CHECKKS" = "psave" || "$CHECKKS" = "pload" || "$CHECKKS" = "pexport" || "$CHECKKS" = "pimport" || "$CHECKKS" = "backup" || "$CHECKKS" = "restore" || "$CHECKKS" = "rotate" || "$CHECKKS" = "rotatelogs" || "$CHECKKS" = "update-kali" || "$CHECKKS" = "updatekali" || "$CHECKKS" = "kaliupdate" || "$CHECKKS" = "kali-update" || "$CHECKKS" = "update-kali-yes" || "$CHECKKS" = "updatekali-yes" ]]
+		if [[ "$CHECKKS" = "etercheck" || "$CHECKKS" = "eternalblue" || "$CHECKKS" = "changelog" || "$CHECKKS" = "wififb" || "$CHECKKS" = "nessusstop" || "$CHECKKS" = "nessusstart" || "$CHECKKS" = "pstop" || "$CHECKKS" = "pstart" || "$CHECKKS" = "astop" || "$CHECKKS" = "astart" || "$CHECKKS" = "settings" || "$CHECKKS" = "disclaimer" || "$CHECKKS" = "d" || "$CHECKKS" = "s" || "$CHECKKS" = "g" || "$CHECKKS" = "l" || "$CHECKKS" = "" || "$CHECKKS" = "if" || "$CHECKKS" = "ifconfig" || "$CHECKKS" = "interfaces" || "$CHECKKS" = "interface" || "$CHECKKS" = "errors" || "$CHECKKS" = "00" || "$CHECKKS" = "exit" || "$CHECKKS" = "update" || "$CHECKKS" = "d1" || "$CHECKKS" = "d2" || "$CHECKKS" = "d3" || "$CHECKKS" = "d4" || "$CHECKKS" = "d5" || "$CHECKKS" = "d6" || "$CHECKKS" = "d7" || "$CHECKKS" = "gg" || "$CHECKKS" = "ks" || "$CHECKKS" = "doctor" || "$CHECKKS" = "health" || "$CHECKKS" = "refresh" || "$CHECKKS" = "toolsup" || "$CHECKKS" = "profile" || "$CHECKKS" = "profiles" || "$CHECKKS" = "psave" || "$CHECKKS" = "pload" || "$CHECKKS" = "pexport" || "$CHECKKS" = "pimport" || "$CHECKKS" = "backup" || "$CHECKKS" = "restore" || "$CHECKKS" = "rotate" || "$CHECKKS" = "rotatelogs" || "$CHECKKS" = "update-kali" || "$CHECKKS" = "updatekali" || "$CHECKKS" = "kaliupdate" || "$CHECKKS" = "kali-update" || "$CHECKKS" = "update-kali-yes" || "$CHECKKS" = "updatekali-yes" ]]
 		then
 			GOOD="0"
 			echo -e ""$RS"This shortcut is already in use by the script."$CE""
@@ -6622,7 +6623,7 @@ function terms_of_use
 	echo -e "or have "$YS"explicit written permission"$CE" to test."
 	echo -e ""
 	echo -e ""$RS"Unauthorized access to systems is illegal."$CE""
-	echo -e "The maintainer (Mkadir1999) accepts "$RS"no responsibility or liability"$CE""
+	echo -e "The maintainer ($LSCRIPT_AUTHOR) accepts "$RS"no responsibility or liability"$CE""
 	echo -e "for any misuse of this software. You use this tool entirely at your own risk."
 	echo -e ""
 	echo -e "Do you agree to use this tool only for lawful training/educational purposes"
@@ -6634,7 +6635,7 @@ function terms_of_use
 			echo "AGREED=$(date -Iseconds 2>/dev/null || date)"
 			echo "PURPOSE=training_and_educational_use_only"
 			echo "USER_ACCEPTS_FULL_RESPONSIBILITY=yes"
-			echo "MAINTAINER_NO_LIABILITY=Mkadir1999"
+			echo "MAINTAINER_NO_LIABILITY=$LSCRIPT_AUTHOR"
 			echo "You have agreed to use this tool for training/educational purposes only, at your own responsibility."
 		} > "$LPATH"/IAGREE.txt
 		sleep 1
@@ -7922,17 +7923,11 @@ do
 		echo -e "	You will find this on Wireshark. Follow the video below for instructions."
 		echo -e "	(e.g. /login.php) or (e.g. /cgi-bin/login.exe) etc etc..."
 		echo -e "^USER^ & ^PASS^ field"
-		echo -e "	You will find this on Wireshark. Follow the video below for instructions."
-		echo -e "	(e.g. username=^USER^&password=^PASS^)"
+		echo -e "	See Wireshark capture for form field names (e.g. username=^USER^&password=^PASS^)."
 		echo -e "Invalid pass string"
-		echo -e "	You will find this when you try to login with the wrong pass on the login page."
-		echo -e "	You need to set a word that is being printed on the screen when login fails."
-		echo -e "	(e.g. Invalid) or (e.g. Wrong) or (e.g. Please) etc etc..."
-		echo -e "	Follow the video below for instructions."
+		echo -e "	Set a word shown when login fails (e.g. Invalid, Wrong, Please)."
 		echo -e "Form"
-		echo -e "	(e.g. http-get-form) or (e.g. http-post-form) etc etc..."
-		echo -e ""
-		echo -e "Video-demonstration: https://www.youtube.com/watch?v=vgbP0AQ5bt4"
+		echo -e "	(e.g. http-get-form) or (e.g. http-post-form)"
 		echo -e ""
 		echo -e ""$CE""
 		echo -e "$PAKTGB"
@@ -8268,39 +8263,23 @@ function select_interface
 		fi
 	done
 }
-function donate_option
+function disclaimer_option
 {
-	while true
-	do
 	clear
-	TERMINALTITLE="DONATION"
+	TERMINALTITLE="DISCLAIMER"
 	dash_calc
-	printf '\033]2;DONATION\a'
-	echo -e "If you found this tool useful, you can buy me a coffee :)"
-	echo -e ""$LBS"Total lscript donations:"$CE" $DONATIONS"
-	echo -e ""$YS" 1"$CE") Open browser to donate"
-	echo -e ""$YS" 2"$CE") Copy donation link"
-	echo -e ""$YS" b"$CE") I don't care about your work! :P"
-	echo -e "Choose: "
-	read DON
-	if [[ "$DON" = "1" ]]
-	then
-		gio open "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GC9RSY4CS6KAY"
-	elif [[ "$DON" = "2" ]]
-	then
-		echo -e "Donation link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GC9RSY4CS6KAY"
-		echo -e "$PAKTGB"
-		$READAK
-	elif [[ "$DON" = "back" || "$DON" = "b" || "$DON" = "00" ]]
-	then
-		BACKL=1
-		break
-	elif [[ "$DON" = "0" ]]
-	then
-		clear
-		exit
-	fi
-	done
+	printf '\033]2;DISCLAIMER\a'
+	echo -e ""$RS"TRAINING & EDUCATIONAL USE ONLY"$CE""
+	echo -e ""
+	echo -e "Maintained by "$YS"$LSCRIPT_AUTHOR"$CE"."
+	echo -e "Use only on systems/networks you own or have written permission to test."
+	echo -e ""$RS"$LSCRIPT_AUTHOR accepts no responsibility or liability for misuse."$CE""
+	echo -e "You use this tool entirely at your own risk."
+	echo -e ""
+	echo -e "Full text: $LPATH/DISCLAIMER.md (or repo docs/DISCLAIMER.md)"
+	echo -e "$PAKTGB"
+	$READAK
+	BACKL=1
 }
 function ngrok_option
 {
@@ -9469,9 +9448,9 @@ function main_options
 	then
 		ngrok_option
 		BACKL=1
-	elif [[ "$YORNAA" = "donate" || "$YORNAA" = "d" ]]
+	elif [[ "$YORNAA" = "disclaimer" || "$YORNAA" = "d" ]]
 	then
-		donate_option
+		disclaimer_option
 #------services
 	elif [[ "$YORNAA" = "pstart" ]]
 	then

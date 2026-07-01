@@ -4,7 +4,7 @@
 
 ### About
 
-**LAZY script (lscript)** — maintained and improved by **[Mkadir1999](https://github.com/Mkadir1999)**.  
+**LAZY script (lscript)** — maintained and improved by **KDR**.  
 Repository: **[Mkadir1999/lscript-2](https://github.com/Mkadir1999/lscript-2)**
 
 ### Disclaimer — training & educational use only
@@ -13,28 +13,18 @@ Repository: **[Mkadir1999/lscript-2](https://github.com/Mkadir1999/lscript-2)**
 
 - Use only on systems and networks you **own** or have **explicit written permission** to test.
 - **Unauthorized access to computer systems is illegal** in most jurisdictions.
-- **Mkadir1999** accepts **no responsibility or liability** for any misuse, damage, or legal consequences arising from use of this software.
+- **KDR** accepts **no responsibility or liability** for any misuse, damage, or legal consequences arising from use of this software.
 - **You alone** are responsible for how you use this tool. By installing or running it, you agree to use it lawfully and at your own risk.
 
 Full text: **[DISCLAIMER.md](DISCLAIMER.md)**
 
 <p align="center">
-<img src="https://i.imgur.com/awIplS6.jpg"/>
-<img src="https://i.imgur.com/pbq0DuE.jpg"/>
-<img src="https://i.imgur.com/QgTLKxR.jpg"/>
-<img src="https://i.imgur.com/oJIk2oG.jpg"/>
-<img src="https://i.imgur.com/icT4x55.jpg"/>
-<img src="https://i.imgur.com/sSf1JcI.jpg"/>
-<img src="https://i.imgur.com/MlDFWax.jpg"/>
-<img src="https://i.imgur.com/rbdUIQI.jpg"/>
+<img src="docs/screenshot.png" alt="lscript main menu — by KDR"/>
 </p>
-A video Hackersploit made : https://www.youtube.com/watch?v=oBpo5sElrMY
 
-A video sstec made:         https://www.youtube.com/watch?v=gSO7c2MN7TY
+**For feature recommendations, add them on the "Issues" tab.**
 
-**For feature-recommendation , add it on the "Issues" tab. NOW!**
-
-**TRAINING / EDUCATIONAL USE ONLY. Mkadir1999 is not responsible for misuse. You use this tool at your own risk and must comply with all applicable laws.**
+**TRAINING / EDUCATIONAL USE ONLY. KDR is not responsible for misuse. You use this tool at your own risk and must comply with all applicable laws.**
 
 **This script will make your life easier, and of course faster.**
 

@@ -2,9 +2,9 @@
 
 **LAZY script (lscript)** is a Bash automation toolkit for **Kali Linux** that wraps WiFi penetration testing, MITM workflows, and 90+ third-party security tools behind a single command: `l`.
 
-> **Maintained by** [Mkadir1999](https://github.com/Mkadir1999) — [Mkadir1999/lscript-2](https://github.com/Mkadir1999/lscript-2)
+> **Maintained by KDR** — [Mkadir1999/lscript-2](https://github.com/Mkadir1999/lscript-2)
 
-> **Legal notice — training & educational use only:** This software is for **authorized security training and education** in controlled environments (labs, courses, systems you own, or with explicit written permission). **Unauthorized use is illegal.** **Mkadir1999** accepts **no responsibility or liability** for any misuse, harm, or legal consequences. **You use this tool entirely at your own risk.**
+> **Legal notice — training & educational use only:** This software is for **authorized security training and education** in controlled environments (labs, courses, systems you own, or with explicit written permission). **Unauthorized use is illegal.** **KDR** accepts **no responsibility or liability** for any misuse, harm, or legal consequences. **You use this tool entirely at your own risk.**
 
 ---
 

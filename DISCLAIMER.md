@@ -2,7 +2,7 @@
 
 ## Training and educational use only
 
-**lscript** (LAZY script) — **Mkadir1999/lscript-2** — is provided for **authorized security training, education, and research** in controlled environments only.
+**lscript** (LAZY script) by **KDR** — provided for **authorized security training, education, and research** in controlled environments only.
 
 ### Permitted use
 
@@ -20,7 +20,7 @@
 
 THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
 
-**Mkadir1999** (maintainer) **does not accept any responsibility or liability** for:
+**KDR** (maintainer) **does not accept any responsibility or liability** for:
 
 - Misuse of this software
 - Damage to systems or data
