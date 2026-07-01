@@ -1,6 +1,8 @@
 # lscript configuration — copy to settings/lscript.conf (created automatically on first run)
-# Edit values and restart lscript (type l) to apply.
+# Edit values and restart lscript (type lazy) to apply.
+# Primary launcher: lazy  (legacy alias: l — may conflict with ls on Ubuntu/Kali)
 
+LAUNCHER=lazy
 LPATH=/root/lscript
 DEFMAC=00:11:22:33:44:55
 

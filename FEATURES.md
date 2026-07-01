@@ -1,6 +1,6 @@
 # lscript v2.2.2 — Feature Reference
 
-**LAZY script (lscript)** is a Bash automation toolkit for **Kali Linux** that wraps WiFi penetration testing, MITM workflows, and 90+ third-party security tools behind a single command: `l`.
+**LAZY script (lscript)** is a Bash automation toolkit for **Kali Linux** that wraps WiFi penetration testing, MITM workflows, and 90+ third-party security tools behind a single command: **`lazy`**.
 
 > **Maintained by KDR** — [Mkadir1999/lscript-2](https://github.com/Mkadir1999/lscript-2)
 
@@ -104,12 +104,12 @@ Multi-select install: pick several tools, press `s` to batch install.
 | **Auto-fix** | Doctor menu → `1` | apt update, xterm, python3, aircrack-ng, sslstrip, iptables, NetworkManager |
 | **Log rotation** | `rotate` or Doctor → `3` | Rotates `doctor.log`, `sslstrip.log`; trims old `.cap`/`.csv` in `/root/handshakes` |
 | **Kali OS upgrade** | `update-kali` or Settings → `8` | `apt update && full-upgrade && autoremove && autoclean` |
-| **Shell alias** | Settings → `9` or first install | Adds `update-kali` alias to `~/.bashrc` for use outside `l` |
+| **Shell alias** | Settings → `9` or first install | Adds `update-kali` alias to `~/.bashrc` for use outside `lazy` |
 | **Profile backup** | `profiles` → `e` or `pexport` | Tarball of `settings/`, `profiles/`, `ks/` |
 | **Profile restore** | `profiles` → `i` or `pimport` | Restore from `.tar.gz` |
 | **Tool refresh** | `refresh` or `toolsup` | `git pull` on installed tools in `/root` |
-| **WSL2 warning** | automatic on `l` | Alerts if no real WiFi adapter (WSL2 limitation) |
-| **Config file** | `settings/lscript.conf` | LPATH, colors, DEFMAC, log limits |
+| **WSL2 warning** | automatic on `lazy` | Alerts if no real WiFi adapter (WSL2 limitation) |
+| **Config file** | `settings/lscript.conf` | LPATH, LAUNCHER (`lazy`), colors, DEFMAC, log limits |
 | **Terminal helper** | `lib/lscript_term.sh` | gnome-terminal with xterm fallback everywhere |
 
 ---
@@ -120,6 +120,7 @@ Created from `settings/lscript.conf.example` on install:
 
 ```ini
 LPATH=/root/lscript
+LAUNCHER=lazy
 DEFMAC=00:11:22:33:44:55
 LOG_ROTATE_MAX_MB=10
 HANDSHAKE_MAX_FILES=500
@@ -127,7 +128,7 @@ COLOR_YS=\e[1;33m
 # ... more color keys ...
 ```
 
-Edit and restart `l` to apply. Logo color can still be overridden via `settings/logocolor.txt`.
+Edit and restart `lazy` to apply. Logo color can still be overridden via `settings/logocolor.txt`.
 
 ---
 
@@ -139,7 +140,7 @@ Equivalent to:
 sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt autoclean
 ```
 
-**Inside lscript (root):**
+**Inside lscript (root):** launch with `lazy`, then use these commands:
 
 | Command | Behavior |
 |---------|----------|
@@ -199,7 +200,8 @@ Open a new terminal and run `update-kali`.
 
 ```
 /root/lscript/
-├── l                 # main script (launchers: lazy or l)
+├── l                 # main script source
+├── lazy              # (installed to PATH as /usr/local/bin/lscript/lazy)
 ├── lh1–lh43           # handshake, deauth, WPS, WEP helpers
 ├── ls/                # MITM helpers (l131, l132, l133)
 ├── lib/
@@ -218,7 +220,10 @@ Open a new terminal and run `update-kali`.
 ```
 /root/handshakes/      # captures (WEP/, deauth/ subdirs)
 /root/wordlists/
-/usr/local/bin/lscript/  # PATH launchers
+/usr/local/bin/lscript/
+├── lazy               # primary launcher — type lazy
+├── l                  # legacy launcher
+└── lh1, lh2, …        # helper scripts
 ```
 
 ---
@@ -229,13 +234,13 @@ Open a new terminal and run `update-kali`.
 |-------------|------------|-------|
 | **Kali Linux (bare metal)** | Full | Recommended |
 | **Kali VM + USB WiFi passthrough** | Full | Pass adapter to VM |
-| **WSL2 / Ubuntu on Windows** | Limited / none | Menu and CLI tools work; wireless labs do not. See **[README — Troubleshooting](README.md#troubleshooting)** (`l` = `ls` alias, `sudo -i`, install steps). |
+| **WSL2 / Ubuntu on Windows** | Limited / none | Menu and CLI tools work; wireless labs do not. See **[README — Troubleshooting](README.md#troubleshooting)** (`lazy` launcher, WSL, install steps). |
 
 ---
 
 ## Troubleshooting
 
-Full install and launch help (Ubuntu `l` alias, WSL, root, `command l`): **[README.md — Troubleshooting](README.md#troubleshooting)**.
+Full install and launch help (use **`lazy`**, WSL, root): **[README.md — Troubleshooting](README.md#troubleshooting)**.
 
 
 ## Uninstall

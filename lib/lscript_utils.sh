@@ -112,7 +112,7 @@ lscript_update_kali()
 
 	if [[ $EUID -ne 0 ]]
 	then
-		echo -e "${RS:-\e[1;31m}Must run as root (or use: sudo l).${CE:-\e[0m}"
+		echo -e "${RS:-\e[1;31m}Must run as root (or use: sudo lazy).${CE:-\e[0m}"
 		return 1
 	fi
 

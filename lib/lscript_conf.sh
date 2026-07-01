@@ -4,6 +4,7 @@
 LSCRIPT_CONF_SOURCED=1
 
 LSCRIPT_DEFAULT_LPATH="/root/lscript"
+LSCRIPT_DEFAULT_LAUNCHER="lazy"
 
 lscript_init_paths()
 {
@@ -48,6 +49,7 @@ lscript_load_conf()
 
 		case "$key" in
 			LPATH) export LPATH="$value" ;;
+			LAUNCHER) export LSCRIPT_LAUNCHER="$value" ;;
 			DEFMAC) export DEFMAC="$value" ;;
 			LOG_ROTATE_MAX_MB) export LOG_ROTATE_MAX_MB="$value" ;;
 			HANDSHAKE_MAX_FILES) export HANDSHAKE_MAX_FILES="$value" ;;
@@ -100,4 +102,5 @@ lscript_apply_defaults()
 	export DEFMAC="${DEFMAC:-00:11:22:33:44:55}"
 	export LOG_ROTATE_MAX_MB="${LOG_ROTATE_MAX_MB:-10}"
 	export HANDSHAKE_MAX_FILES="${HANDSHAKE_MAX_FILES:-500}"
+	export LSCRIPT_LAUNCHER="${LSCRIPT_LAUNCHER:-$LSCRIPT_DEFAULT_LAUNCHER}"
 }

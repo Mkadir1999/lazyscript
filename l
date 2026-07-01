@@ -10067,13 +10067,13 @@ function labcheck_menu
 	then
 		echo -e "  ["$LGNS" OK "$CE"]  running as root"
 	else
-		echo -e "  ["$RS"FAIL"$CE"]  not root (use sudo l)"
+		echo -e "  ["$RS"FAIL"$CE"]  not root (use sudo lazy)"
 	fi
 	if [[ -f "$LPATH/IAGREE.txt" ]]
 	then
 		echo -e "  ["$LGNS" OK "$CE"]  disclaimer accepted"
 	else
-		echo -e "  ["$RS"FAIL"$CE"]  run l once and accept terms"
+		echo -e "  ["$RS"FAIL"$CE"]  run lazy once and accept terms"
 	fi
 	if lscript_lab_scope_is_set
 	then
@@ -10155,7 +10155,7 @@ function doctor_menu
 		echo -e ""
 		DOCTORFAILS=0
 		echo -e ""$YS"System:"$CE""
-		doctor_check_item "root user" "[[ \$EUID -eq 0 ]]" "Run as root."
+		doctor_check_item "root user" "[[ \$EUID -eq 0 ]]" "Run as root (sudo lazy)."
 		if lscript_is_wsl 2>/dev/null
 		then
 			if lscript_has_wifi_adapter 2>/dev/null

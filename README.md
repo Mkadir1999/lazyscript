@@ -1,6 +1,6 @@
 ## Welcome to the LAZY script  v2.2.2
 
-> **Launch with `lazy`** (recommended). On Ubuntu/Kali, `l` is often an alias for `ls` — use `lazy` or `command l`. See **[FEATURES.md](FEATURES.md)**.
+> **Launch with `lazy`** — the main command to open lscript. (`l` is legacy and often conflicts with `ls` on Ubuntu/Kali.) See **[FEATURES.md](FEATURES.md)**.
 
 ### About
 
@@ -172,7 +172,7 @@ The installer copies files to `/root/lscript`, adds `/usr/local/bin/lscript` to 
 
 **Health check:** run `lazy` as root, then type `doctor` or `labcheck`.
 
-**Configuration:** edit `/root/lscript/settings/lscript.conf` after install (paths, colors, MAC, log limits).
+`settings/lscript.conf` — customize paths, colors, MAC, log limits (`LAUNCHER=lazy` in example).
 
 See **[FEATURES.md](FEATURES.md)** for commands, directory layout, and platform notes.
 
@@ -221,7 +221,7 @@ cd ~/lscript-2
 chmod +x install.sh
 sudo ./install.sh --yes
 sudo -i
-l
+lazy
 ```
 
 #### Installed but command not found
@@ -229,13 +229,13 @@ l
 ```bash
 sudo -i
 export PATH=/usr/local/bin/lscript:$PATH
-l
+lazy
 ```
 
 Check the binary exists:
 
 ```bash
-ls -la /usr/local/bin/lscript/l
+ls -la /usr/local/bin/lscript/lazy
 ls -la /root/lscript/l
 ```
 
@@ -247,7 +247,7 @@ ls -la /root/lscript/l
 | `spoof` / MITM labs on a **wired** lab network | USB WiFi passthrough (hard to set up; often unreliable) |
 
 - Install from your clone: `cd ~/lscript-2 && sudo ./install.sh --yes`
-- Always launch as root: `sudo -i` then `l`
+- Always launch as root: `sudo -i` then `lazy`
 - lscript will show a **WSL warning** on startup — expected
 - For full WiFi labs, use **native Kali** on bare metal or a VM with USB WiFi passthrough
 
@@ -263,9 +263,9 @@ syntax error near unexpected token `$'do\r''
 **Quick fix (run as root):**
 
 ```bash
-sed -i 's/\r$//' /root/lscript/l /usr/local/bin/lscript/l
+sed -i 's/\r$//' /root/lscript/l /usr/local/bin/lscript/l /usr/local/bin/lscript/lazy
 sed -i 's/\r$//' /root/lscript/lib/*.sh /root/lscript/labs/*.sh /root/lscript/lh* /root/lscript/ls/*.sh
-command l
+lazy
 ```
 
 **Or reinstall from a fresh clone** (install.sh now strips CRLF automatically):
@@ -275,7 +275,7 @@ cd ~/lscript-2
 git pull
 sudo ./install.sh --yes
 sudo -i
-command l
+lazy
 ```
 
 #### Still stuck?
@@ -283,10 +283,10 @@ command l
 Run these as your normal user and paste the output in a GitHub issue:
 
 ```bash
-which l
-type l
-ls -la /usr/local/bin/lscript/l
-sudo /usr/local/bin/lscript/l
+which lazy
+type lazy
+ls -la /usr/local/bin/lscript/lazy
+sudo /usr/local/bin/lscript/lazy
 ```
 
 ### How to uninstall
@@ -298,6 +298,6 @@ rmdir -r /root/lscript
 
 ### How to update
 ``` 
-Run the script
+lazy
 Type "update"
 ```

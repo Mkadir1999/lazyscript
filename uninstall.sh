@@ -27,6 +27,14 @@ then
 		then
 			sed -i 's|export PATH=/usr/local/bin/lscript:$PATH||g' ~/.bashrc
 		fi
+		if grep -q "lscript launcher" ~/.bashrc 2>/dev/null || grep -q "lscript launchers" ~/.bashrc 2>/dev/null
+		then
+			sed -i '/alias lazy=/d' ~/.bashrc 2>/dev/null
+			sed -i '/alias l=/d' ~/.bashrc 2>/dev/null
+			sed -i '/unalias l/d' ~/.bashrc 2>/dev/null
+			sed -i '/# lscript launcher/d' ~/.bashrc 2>/dev/null
+			sed -i '/# lscript launchers/d' ~/.bashrc 2>/dev/null
+		fi
 		if grep -q "/bin/lscript" ~/.bashrc 2>/dev/null
 		then
 			sed -i 's|export PATH=/bin/lscript:$PATH||g' ~/.bashrc
