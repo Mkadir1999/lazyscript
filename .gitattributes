@@ -1,6 +1,16 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
+# Bash scripts must use LF (CRLF breaks lscript on Linux/WSL)
+*.sh text eol=lf
+l text eol=lf
+lh* text eol=lf
+labs/* text eol=lf
+lib/* text eol=lf
+ls/* text eol=lf
+install.sh text eol=lf
+uninstall.sh text eol=lf
+
 # Custom for Visual Studio
 *.cs     diff=csharp
 

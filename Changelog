@@ -1,3 +1,11 @@
+2.2.1
+==== Hotfix: bash syntax + line endings ====
+
+- FIXED `command l` / `syntax error near unexpected token` — lab menu echo quoting in v2.2.0.
+- FIXED Windows CRLF line endings breaking bash on Linux/WSL; install.sh strips `\r` on install.
+- `.gitattributes` forces LF for shell scripts.
+- README troubleshooting updated (CRLF, `l` alias, WSL).
+
 2.2.0
 ==== Lab / spoof toolkit (training) ====
 

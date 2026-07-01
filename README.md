@@ -254,6 +254,33 @@ ls -la /root/lscript/l
 - lscript will show a **WSL warning** on startup — expected
 - For full WiFi labs, use **native Kali** on bare metal or a VM with USB WiFi passthrough
 
+#### `syntax error near unexpected token` (often line 9836 or `do\r`)
+
+Scripts were saved with **Windows CRLF** line endings. Bash on Linux cannot parse `\r` and fails with errors like:
+
+```
+syntax error near unexpected token `('
+syntax error near unexpected token `$'do\r''
+```
+
+**Quick fix (run as root):**
+
+```bash
+sed -i 's/\r$//' /root/lscript/l /usr/local/bin/lscript/l
+sed -i 's/\r$//' /root/lscript/lib/*.sh /root/lscript/labs/*.sh /root/lscript/lh* /root/lscript/ls/*.sh
+command l
+```
+
+**Or reinstall from a fresh clone** (install.sh now strips CRLF automatically):
+
+```bash
+cd ~/lscript-2
+git pull
+sudo ./install.sh --yes
+sudo -i
+command l
+```
+
 #### Still stuck?
 
 Run these as your normal user and paste the output in a GitHub issue:

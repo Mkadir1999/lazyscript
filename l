@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # set -x
-VERSION=2.2.0
+VERSION=2.2.1
 LSCRIPT_GITHUB_USER="Mkadir1999"
 LSCRIPT_GITHUB_REPO="lscript-2"
 LSCRIPT_GITHUB_BRANCH="main"
@@ -22,7 +22,7 @@ unset _lscript_lib
 HOWMANYTOOLS=53
 BACKL="0"
 DONATIONS=13
-LATESTCHANGELOGLINES=24
+LATESTCHANGELOGLINES=10
 cd
 #############DEFAULTS###############
 function defaults_l
@@ -9821,11 +9821,11 @@ function lab_view_creds
 	TERMINALTITLE="CAPTURED CREDENTIALS (LAB)"
 	dash_calc
 	printf '\033]2;LAB CREDS\a'
-	echo -e ""$BS"Training lab — captured data only."$CE""
+	echo -e ""$BS"Training lab - captured data only."$CE""
 	echo -e ""
 	if [[ -f /root/sslstrip.log ]]
 	then
-		echo -e ""$YS"--- /root/sslstrip.log (last 40 lines) ---$CE""
+		echo -e ""$YS"--- /root/sslstrip.log - last 40 lines ---"$CE""
 		tail -n 40 /root/sslstrip.log
 	else
 		echo -e ""$RS"No /root/sslstrip.log yet."$CE""
@@ -9833,12 +9833,12 @@ function lab_view_creds
 	echo -e ""
 	if [[ -f "$wififbfile" ]]
 	then
-		echo -e ""$YS"--- WiFi phishing log ($wififbfile) ---$CE""
+		echo -e ""$YS"--- WiFi phishing log: $wififbfile ---"$CE""
 		tail -n 20 "$wififbfile"
 	fi
 	if [[ -f "$wififbpassfile" ]]
 	then
-		echo -e ""$YS"--- WiFi passwords ($wififbpassfile) ---$CE""
+		echo -e ""$YS"--- WiFi passwords: $wififbpassfile ---"$CE""
 		tail -n 20 "$wififbpassfile"
 	fi
 	echo -e ""
@@ -9858,9 +9858,9 @@ function lab_scope_menu
 		echo -e "File: "$YS"$LSCRIPT_LAB_SCOPE_FILE"$CE""
 		if lscript_lab_scope_is_set
 		then
-			echo -e ""$LGNS"Scope is active (only listed IPs allowed)."$CE""
+			echo -e ""$LGNS"Scope is active - only listed IPs allowed."$CE""
 		else
-			echo -e ""$YS"No scope set — all IPs allowed (set targets for safer labs)."$CE""
+			echo -e ""$YS"No scope set - all IPs allowed. Use option 7 to restrict."$CE""
 		fi
 		echo -e ""
 		cat "$LSCRIPT_LAB_SCOPE_FILE" 2>/dev/null | head -n 20
@@ -9903,7 +9903,7 @@ function lab_dns_spoof_wizard
 	clear
 	lscript_lab_training_banner
 	echo -e ""
-	echo -e "Interface for dnsspoof ("$YS"Enter"$CE"=$ETH"): "
+	echo -e "Interface for dnsspoof ["$YS"Enter"$CE"=$ETH"]: "
 	read -r LABIF
 	[[ -z "$LABIF" ]] && LABIF="$ETH"
 	if ! command -v dnsspoof >/dev/null 2>&1
@@ -9934,7 +9934,7 @@ function lab_arp_mitm_wizard
 	echo -e ""
 	echo -e "Gateway IP: "
 	read -r GATENM
-	echo -e "Interface ("$YS"Enter"$CE"=$ETH"): "
+	echo -e "Interface ["$YS"Enter"$CE"=$ETH"]: "
 	read -r GATEINT
 	[[ -z "$GATEINT" ]] && GATEINT="$ETH"
 	echo -e "Target IP: "
@@ -9953,13 +9953,13 @@ function lab_arp_mitm_wizard
 	lscript_lab_audit "arp_mitm_start" "gw=$GATENM target=$TARGIP if=$GATEINT"
 	lscript_term --disown -- bash -c "export LPATH='$LPATH' GATENM='$GATENM' GATEINT='$GATEINT' TARGIP='$TARGIP'; bash '$LPATH/labs/arp_mitm_lab.sh'; exec bash"
 	lscript_term --disown -- bash -c "export LPATH='$LPATH' GATENM='$GATENM' GATEINT='$GATEINT' TARGIP='$TARGIP'; bash '$LPATH/labs/arp_mitm_lab_reverse.sh'; exec bash"
-	echo -e ""$YS"ARP MITM pair started (two terminals)."$CE""
+	echo -e ""$YS"ARP MITM pair started - two terminals."$CE""
 	sleep 2
 }
 function lab_mac_random
 {
 	clear
-	echo -e "Interface ("$YS"Enter"$CE"=$WLANN): "
+	echo -e "Interface ["$YS"Enter"$CE"=$WLANN"]: "
 	read -r MACIF
 	[[ -z "$MACIF" ]] && MACIF="$WLANN"
 	if ! command -v macchanger >/dev/null 2>&1
@@ -9978,7 +9978,7 @@ function lab_mac_random
 function lab_mac_restore
 {
 	clear
-	echo -e "Interface ("$YS"Enter"$CE"=$WLANN): "
+	echo -e "Interface ["$YS"Enter"$CE"=$WLANN"]: "
 	read -r MACIF
 	[[ -z "$MACIF" ]] && MACIF="$WLANN"
 	ifconfig "$MACIF" down
@@ -10059,7 +10059,7 @@ function labcheck_menu
 	TERMINALTITLE="LAB CHECK"
 	dash_calc
 	printf '\033]2;LAB CHECK\a'
-	echo -e ""$BS"lscript v$VERSION lab check — training environment only."$CE""
+	echo -e ""$BS"lscript v$VERSION lab check - training environment only."$CE""
 	echo -e ""
 	lscript_lab_training_banner
 	echo -e ""
@@ -10079,9 +10079,9 @@ function labcheck_menu
 	then
 		echo -e "  ["$LGNS" OK "$CE"]  lab scope configured"
 	else
-		echo -e "  ["$YS"WARN"$CE"]  no lab scope — set via spoof → 7"
+		echo -e "  ["$YS"WARN"$CE"]  no lab scope - set via spoof menu option 7"
 	fi
-	lscript_is_wsl 2>/dev/null && echo -e "  ["$YS"WSL "$CE"]  WSL detected — wireless labs may fail"
+	lscript_is_wsl 2>/dev/null && echo -e "  ["$YS"WSL "$CE"]  WSL detected - wireless labs may fail"
 	doctor_check_item "dnsspoof" "command -v dnsspoof" "apt-get install -y dsniff"
 	doctor_check_item "arpspoof" "command -v arpspoof" "apt-get install -y dsniff"
 	doctor_check_item "macchanger" "command -v macchanger" "apt-get install -y macchanger"

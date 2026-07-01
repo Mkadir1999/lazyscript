@@ -18,6 +18,16 @@ then
 fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+lscript_fix_line_endings()
+{
+	local root="${1:-/root/lscript}"
+	find "$root" -type f \( -name '*.sh' -o -name 'l' -o -name 'lh*' -o -name 'l1*.sh' -o -name 'l13*.sh' \) 2>/dev/null | while IFS= read -r _f
+	do
+		sed -i 's/\r$//' "$_f" 2>/dev/null || true
+	done
+}
+
 if [[ -f "$DIR/lib/lscript_term.sh" ]]
 then
 	# shellcheck source=/dev/null
@@ -69,6 +79,7 @@ then
 	fi
 	mkdir -p /root/lscript
 	cp -r "$DIR"/* /root/lscript
+	lscript_fix_line_endings /root/lscript
 	chmod +x /root/lscript/install.sh
 	chmod +x /root/lscript/lib/*.sh 2>/dev/null || true
 chmod +x /root/lscript/labs/*.sh 2>/dev/null || true
@@ -83,6 +94,7 @@ fi
 
 echo -e "Installing lscript..."
 sleep 1
+lscript_fix_line_endings /root/lscript
 echo -e "Fixing permissions"
 sleep 2
 chmod +x /root/lscript/lh1
