@@ -2,14 +2,21 @@
 
 > **New in 2.1.8:** `update-kali` — full Kali OS upgrade from inside `l` or as a shell alias. See **[FEATURES.md](FEATURES.md)**.
 
-### Credits & fork
+### About
 
-This project is a **fork** of the original [LAZY script (lscript)](https://github.com/arismelachroinos/lscript) by **[Aris Melachroinos](https://github.com/arismelachroinos)**.
+**LAZY script (lscript)** — maintained and improved by **[Mkadir1999](https://github.com/Mkadir1999)**.  
+Repository: **[Mkadir1999/lscript-2](https://github.com/Mkadir1999/lscript-2)**
 
-- **Original author:** [arismelachroinos](https://github.com/arismelachroinos) — created lscript and the LAZY script concept  
-- **This fork:** [Mkadir1999/lscript-2](https://github.com/Mkadir1999/lscript-2) — maintenance, bug fixes, and new features (v2.1.7+)
+### Disclaimer — training & educational use only
 
-If you use this fork, please **star and credit the original repo** as well. This work builds on Aris's project and remains under the same spirit and license (GPL-3.0).
+**This tool is intended for authorized security training, education, and lab use only.**
+
+- Use only on systems and networks you **own** or have **explicit written permission** to test.
+- **Unauthorized access to computer systems is illegal** in most jurisdictions.
+- **Mkadir1999** accepts **no responsibility or liability** for any misuse, damage, or legal consequences arising from use of this software.
+- **You alone** are responsible for how you use this tool. By installing or running it, you agree to use it lawfully and at your own risk.
+
+Full text: **[DISCLAIMER.md](DISCLAIMER.md)**
 
 <p align="center">
 <img src="https://i.imgur.com/awIplS6.jpg"/>
@@ -27,7 +34,7 @@ A video sstec made:         https://www.youtube.com/watch?v=gSO7c2MN7TY
 
 **For feature-recommendation , add it on the "Issues" tab. NOW!**
 
-**I AM NOT RESPONSIBLE HOW YOU USE THIS TOOL.BE LEGAL AND NOT STUPID.**
+**TRAINING / EDUCATIONAL USE ONLY. Mkadir1999 is not responsible for misuse. You use this tool at your own risk and must comply with all applicable laws.**
 
 **This script will make your life easier, and of course faster.**
 
@@ -202,7 +209,3 @@ rmdir -r /root/lscript
 Run the script
 Type "update"
 ```
-
-### Original project
-
-Forked from **[arismelachroinos/lscript](https://github.com/arismelachroinos/lscript)** by [Aris Melachroinos](https://github.com/arismelachroinos). Please support the original author.

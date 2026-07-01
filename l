@@ -304,11 +304,11 @@ function banner
 	echo -e ""
 	echo -e "$COL         ██╗      █████╗ ███████╗██╗   ██╗$CE v$VERSION"
 	echo -e "$COL         ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝$CE"
-	echo -e "$COL         ██║     ███████║  ███╔╝  ╚████╔╝ $CE   by "$COL"ARIS MELACHROINOS$CE"
+	echo -e "$COL         ██║     ███████║  ███╔╝  ╚████╔╝ $CE   by "$COL"MKADIR1999$CE"
 	echo -e "$COL         ██║     ██╔══██║ ███╔╝    ╚██╔╝  $CE"
 	echo -e "$COL    The  ███████╗██║  ██║███████╗   ██║  script$CE"
 	echo -e "$COL         ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   $CE"
-	echo -e ""$BS"Fork by Mkadir1999 · Original: https://github.com/arismelachroinos/lscript"$CE""
+	echo -e ""$BS"https://github.com/${LSCRIPT_GITHUB_USER}/${LSCRIPT_GITHUB_REPO}"$CE""
 	echo -e ""$YS"if"$CE") Ifconfig           "$YS"l"$CE") Local IPs & gateways "$RS"|"$CE"  "$YS"scan"$CE") Arp-scan network"
 	if [[ "$WLANCHECKING" = "" ]]
 	then
@@ -6615,14 +6615,28 @@ function terms_of_use
 	echo -e "$PAKTC"
 	$READAK
 	clear
-	echo -e "This tool is only for educational purposes only."
-	echo -e "Use this tool only on your own network and never without permission."
-	echo -e "I am not responsible for anything you do with this tool."
-	echo -e "Will you use this tool only on your own network and only with your own responsibility?("$YS"YES"$CE"/"$YS"NO"$CE"): "
-	read YESORNO
+	echo -e ""$RS"TERMS OF USE — TRAINING & EDUCATIONAL PURPOSES ONLY"$CE""
+	echo -e ""
+	echo -e "This tool is intended for "$YS"authorized security training and education"$CE" only."
+	echo -e "Use it only in labs, courses, or on networks/systems you "$YS"own"$CE""
+	echo -e "or have "$YS"explicit written permission"$CE" to test."
+	echo -e ""
+	echo -e ""$RS"Unauthorized access to systems is illegal."$CE""
+	echo -e "The maintainer (Mkadir1999) accepts "$RS"no responsibility or liability"$CE""
+	echo -e "for any misuse of this software. You use this tool entirely at your own risk."
+	echo -e ""
+	echo -e "Do you agree to use this tool only for lawful training/educational purposes"
+	echo -e "and accept full personal responsibility? ("$YS"YES"$CE"/"$YS"NO"$CE"): "
+	read -r YESORNO
 	if [[ "$YESORNO" = "YES" ]]
-	then 
-		echo "You have agreed the terms and you use this tool with your own responsibility." > "$LPATH"/IAGREE.txt
+	then
+		{
+			echo "AGREED=$(date -Iseconds 2>/dev/null || date)"
+			echo "PURPOSE=training_and_educational_use_only"
+			echo "USER_ACCEPTS_FULL_RESPONSIBILITY=yes"
+			echo "MAINTAINER_NO_LIABILITY=Mkadir1999"
+			echo "You have agreed to use this tool for training/educational purposes only, at your own responsibility."
+		} > "$LPATH"/IAGREE.txt
 		sleep 1
 		clear
 	else
@@ -8262,7 +8276,7 @@ function donate_option
 	TERMINALTITLE="DONATION"
 	dash_calc
 	printf '\033]2;DONATION\a'
-	echo -e "If you found my script useful, you can buy me a coffee :)"
+	echo -e "If you found this tool useful, you can buy me a coffee :)"
 	echo -e ""$LBS"Total lscript donations:"$CE" $DONATIONS"
 	echo -e ""$YS" 1"$CE") Open browser to donate"
 	echo -e ""$YS" 2"$CE") Copy donation link"
