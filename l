@@ -5660,9 +5660,9 @@ function website_tools
 		fi
 		if [[ -d /root/Blazy ]]
 		then
-			echo -e ""$YS" 5"$CE") Blazy                 Login bruteforcer/tests for CSRF, Cj, Cloudflare, WAF"
+			echo -e ""$YS" 5"$CE") Blazy                 Login brute-forcer/tests for CSRF, Clickjacking, Cloudflare, WAF"
 		else
-			echo -e ""$RS" 5"$CE") "$RS"Blazy"$CE"                 Login bruteforcer/tests for CSRF, Clickjacking, Cloudflare and WAF"
+			echo -e ""$RS" 5"$CE") "$RS"Blazy"$CE"                 Login brute-forcer/tests for CSRF, Clickjacking, Cloudflare and WAF"
 		fi
 		if [[ -d /root/Striker ]]
 		then
@@ -6061,9 +6061,9 @@ do
 	fi
 	if [[ -d /root/cupp ]]
 	then
-		echo -e ""$YS" 4"$CE") Cupp             Make specific worldlists"
+		echo -e ""$YS" 4"$CE") Cupp             Make specific wordlists"
 	else
-		echo -e ""$RS" 4"$CE") "$RS"Cupp"$CE"             Make specific worldlists"
+		echo -e ""$RS" 4"$CE") "$RS"Cupp"$CE"             Make specific wordlists"
 	fi
 	if [[ -f /usr/bin/bleachbit ]]
 	then
@@ -7399,7 +7399,7 @@ function eternalblue_check
 	then
 		mkdir	"$LPATH"/rce
 	fi
-	echo -e "RHOST:("$BS"if scanning multiple hosts, seperate with space"$CE") "
+	echo -e "RHOST:("$BS"if scanning multiple hosts, separate with spaces"$CE") "
 	read RHOSTL
 	printf 'use auxiliary/scanner/smb/smb_ms17_010\n' > "$LPATH"/rce/eternalbluerc.rc
 	printf 'set RHOSTS %q\n' "$RHOSTL" >> "$LPATH"/rce/eternalbluerc.rc
@@ -10171,7 +10171,7 @@ function main_options
 		check_wlans
 		if [[ "$WLANCHECKING" = "" ]]
 		then
-			echo -e ""$RS"Error. Could find $WLANN interface to disable."$CE""
+			echo -e ""$RS"Error. Could not find $WLANN interface to disable."$CE""
 		else
 			disable_wlan
 		fi
@@ -10180,7 +10180,7 @@ function main_options
 		check_wlans
 		if [[ "$WLANCHECKING" = "" ]]
 		then
-			echo -e ""$RS"Error. Could find $WLANN interface."$CE""
+			echo -e ""$RS"Error. Could not find $WLANN interface."$CE""
 		else
 			echo -e "Enabling $WLANNM..."
 			echo -e "Killing services..."
@@ -10193,7 +10193,7 @@ function main_options
 		check_wlans
 		if [[ "$WLANMCHECKING" = "" ]]
 		then
-			echo -e ""$RS"Error. Could find $WLANNM interface."$CE""
+			echo -e ""$RS"Error. Could not find $WLANNM interface."$CE""
 		else
 			stop_monitor
 		fi

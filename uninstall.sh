@@ -15,7 +15,7 @@ read -r CHUN
 if [ "$CHUN" = "y" ]
 then
 	echo -e "If you have any problems please contact me first."
-	echo -e "Do you still wanna get rid of me?(y/n)(Enter=no): "
+	echo -e "Do you still want to remove lazyscript?(y/n)(Enter=no): "
 	read -r CHCHUN
 	if [ "$CHCHUN" = "y" ]
 	then
