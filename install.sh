@@ -17,6 +17,13 @@ then
 	exit 1
 fi
 
+# Detect whether lscript was already configured before this run.
+LSCRIPT_ALREADY_INSTALLED=0
+if grep -q "bin/lscript" ~/.bashrc 2>/dev/null || [[ -x /usr/local/bin/lazy ]]
+then
+	LSCRIPT_ALREADY_INSTALLED=1
+fi
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 lscript_fix_line_endings()
@@ -209,7 +216,7 @@ fi
 
 if [[ "$NONINTERACTIVE" -eq 1 ]]
 then
-	if grep -q "bin/lscript" ~/.bashrc 2>/dev/null
+	if [[ "$LSCRIPT_ALREADY_INSTALLED" -eq 1 ]]
 	then
 		UORI="u"
 	else
