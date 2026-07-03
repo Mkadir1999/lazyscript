@@ -1,6 +1,8 @@
 ## lscript v2.2.4 — the LAZY script
 
-> **Launch with `lazy`** — the main command to open lscript. (`l` is legacy and often conflicts with `ls` on Ubuntu/Kali.) See **[FEATURES.md](FEATURES.md)** for the full reference.
+> **Launch with `lazy`** — the only supported way to open lscript. See **[FEATURES.md](FEATURES.md)** for the full reference.
+>
+> ⚠️ **v2.2.4 breaking change:** the legacy `l` launcher is **no longer installed**. It conflicted with the `l` = `ls` shell alias on Ubuntu/Kali and is removed entirely in this release. If you have an older install, run `sudo /root/lscript/install.sh --yes` to clean it up, then always launch with `lazy`.
 
 **Maintained by KDR** — https://github.com/Mkadir1999/lscript-2
 
@@ -57,9 +59,10 @@ lazy               # open the menu
 
 | Command | What it does |
 |---|---|
-| **`lazy`** | **Primary launcher** — opens the full menu (recommended, no `l` vs `ls` conflict) |
-| `l` | Legacy launcher (may conflict with `l` = `ls` on Ubuntu/Kali) |
+| **`lazy`** | **The only supported launcher** — opens the full menu |
 | `sudo /usr/local/bin/lscript/lazy` | Direct path (no shell aliases needed) |
+
+> ❌ `l` is **NOT** a launcher in v2.2.4+. It used to launch lscript, but it conflicted with the `l` = `ls` shell alias on Ubuntu/Kali and has been removed. If you typed `l` and it just listed files, that was the cause. Use **`lazy`** instead.
 
 After `lazy` is running, you can type these from the main menu prompt:
 
@@ -260,7 +263,7 @@ The installer ships with a multi-select menu (`install` / `reinstall_tools` / me
 | **Tool refresh** | `refresh` / `toolsup` | `git pull` on installed tools in `/root` |
 | **WSL2 warning** | automatic | Alerts when no real WiFi adapter is visible |
 | **Config file** | `settings/lscript.conf` | LPATH, LAUNCHER, DEFMAC, colors, log limits |
-| **CLI launchers** | `lazy` (recommended) or `l` (legacy) | Primary entry points |
+| **CLI launcher** | `lazy` | Only supported entry point (the `l` launcher was removed in v2.2.4) |
 | **Shell alias install** | settings → `9` | Install `update-kali` alias into `~/.bashrc` |
 | **Non-interactive install** | `./install.sh --yes` | CI/automation support |
 
@@ -294,9 +297,8 @@ The installer ships with a multi-select menu (`install` / `reinstall_tools` / me
 /root/handshakes/      # captures (WEP/, deauth/ subdirs)
 /root/wordlists/
 /usr/local/bin/lscript/
-├── lazy               # primary launcher — type `lazy`
-├── l                  # legacy launcher
-└── lh1, lh2, …        # helper scripts
+├── lazy               # THE launcher — type `lazy` (the `l` launcher was removed in v2.2.4)
+└── lh1, lh2, …        # helper scripts (called internally by the menu)
 ```
 
 ---
@@ -322,7 +324,7 @@ sudo ./install.sh
 sudo ./install.sh --yes
 ```
 
-The installer copies files to `/root/lscript`, adds `/usr/local/bin/lscript` to root's PATH, and sets the **`lazy`** (and `l`) launcher aliases in root's `~/.bashrc`.
+The installer copies files to `/root/lscript`, adds `/usr/local/bin/lscript` to root's PATH, and sets the **`lazy`** launcher alias in root's `~/.bashrc`. The legacy `l` launcher is **not** installed (it was removed in v2.2.4).
 
 **Health check:** run `lazy` as root, then type `doctor` or `labcheck`.
 
@@ -334,7 +336,12 @@ See **[FEATURES.md](FEATURES.md)** for the full command reference, configuration
 
 ### `l` only lists files (shows Changelog, README, l, lh1…)
 
-On **Ubuntu** and some other distros, `l` is an **alias for `ls`**. Use **`lazy`** instead:
+This is the most common confusion. The `l` command in your shell is **not** lscript — it's either:
+
+- Ubuntu's built-in `l` → `ls` alias (from `~/.bashrc`), or
+- A leftover symlink from a very old lscript install
+
+**v2.2.4+ removed the `l` launcher entirely.** The correct command is `lazy`. Run:
 
 ```bash
 sudo -i
@@ -342,13 +349,16 @@ source ~/.bashrc
 lazy
 ```
 
-If `lazy` is not found, reinstall or run:
+**If a leftover `/usr/local/bin/l` from an older install is shadowing your shell, remove it once:**
 
 ```bash
-sudo /usr/local/bin/lscript/lazy
+sudo rm -f /usr/local/bin/l /usr/local/bin/lscript/l
+hash -r        # tell your current shell to forget the cached path
 ```
 
-**Fresh install** (from your clone folder):
+Then launch with `lazy` and you're set. Going forward, the install script also removes any leftover `l` symlink automatically.
+
+**If `lazy` is not found at all** (fresh box, no install), do a fresh install:
 
 ```bash
 cd ~/lscript-2
@@ -358,19 +368,21 @@ sudo -i
 lazy
 ```
 
-### Installed but command not found
+### Installed but `lazy` not found
 
 ```bash
 sudo -i
 export PATH=/usr/local/bin/lscript:$PATH
+hash -r
 lazy
 ```
 
-Check the binary exists:
+Check the launcher exists and is executable:
 
 ```bash
+ls -la /usr/local/bin/lazy
 ls -la /usr/local/bin/lscript/lazy
-ls -la /root/lscript/l
+file /usr/local/bin/lscript/lazy
 ```
 
 ### Ubuntu on Windows (WSL / WSL2)
@@ -392,8 +404,10 @@ Scripts were saved with **Windows CRLF** line endings. Bash on Linux cannot pars
 **Quick fix (run as root):**
 
 ```bash
-sed -i 's/\r$//' /root/lscript/l /usr/local/bin/lscript/l /usr/local/bin/lscript/lazy
+sed -i 's/\r$//' /root/lscript/l /usr/local/bin/lscript/lazy
 sed -i 's/\r$//' /root/lscript/lib/*.sh /root/lscript/labs/*.sh /root/lscript/lh* /root/lscript/ls/*.sh
+sudo -i
+hash -r
 lazy
 ```
 

@@ -30,10 +30,15 @@ lscript_fix_line_endings()
 
 lscript_setup_launchers()
 {
-	chmod +x /usr/local/bin/lscript/l /usr/local/bin/lscript/lazy 2>/dev/null || true
+	# v2.2.4+: only the `lazy` launcher is installed. The `l` launcher was
+	# removed because it conflicts with `l` = `ls` on Ubuntu/Kali and was
+	# never the recommended entry point. If a leftover `l` file/symlink
+	# from an older install is still around, remove it so it can never
+	# shadow the new `lazy` command.
+	rm -f /usr/local/bin/l /usr/local/bin/lscript/l 2>/dev/null || true
+	chmod +x /usr/local/bin/lscript/lazy 2>/dev/null || true
 	ln -sf /usr/local/bin/lscript/lazy /usr/local/bin/lazy
-	ln -sf /usr/local/bin/lscript/l /usr/local/bin/l 2>/dev/null || true
-	echo -e "Launchers: /usr/local/bin/lazy (and /usr/local/bin/lscript/lazy)"
+	echo -e "Launcher: /usr/local/bin/lazy  (use: lazy)"
 	if ! grep -q "/usr/local/bin/lscript" ~/.bashrc 2>/dev/null
 	then
 		echo "export PATH=/usr/local/bin/lscript:\$PATH" >> ~/.bashrc
@@ -41,16 +46,22 @@ lscript_setup_launchers()
 	export PATH=/usr/local/bin/lscript:$PATH
 	if ! grep -q "alias lazy=" ~/.bashrc 2>/dev/null
 	then
-		if grep -q "lscript launcher" ~/.bashrc 2>/dev/null
-		then
-			sed -i "/unalias l/i alias lazy='/usr/local/bin/lscript/lazy'" ~/.bashrc
-		else
-			cat >> ~/.bashrc <<'EOF'
-# lscript launcher — use `lazy` (the `l` alias collides with `ls` on Ubuntu/Kali)
+		cat >> ~/.bashrc <<'EOF'
+# lscript launcher — type `lazy` to open the menu.
+# The legacy `l` launcher is intentionally NOT installed (it conflicts with
+# `l` = `ls` on Ubuntu/Kali). Use `lazy` instead.
 alias lazy='/usr/local/bin/lscript/lazy'
-unalias l 2>/dev/null || true
 EOF
-		fi
+	fi
+	# Defensive cleanup: if an old alias l=/usr/local/bin/lscript/l still
+	# lives in the user's .bashrc, remove it so they fall back to `lazy`.
+	if grep -q "alias l=" ~/.bashrc 2>/dev/null
+	then
+		sed -i "/^[[:space:]]*alias l=/d" ~/.bashrc 2>/dev/null || true
+	fi
+	if grep -q "unalias l" ~/.bashrc 2>/dev/null
+	then
+		sed -i "/^[[:space:]]*unalias l[[:space:]]*$/d" ~/.bashrc 2>/dev/null || true
 	fi
 	if [[ -f /root/lscript/lib/lscript_utils.sh ]]
 	then
@@ -119,7 +130,14 @@ chmod +x /root/lscript/labs/*.sh 2>/dev/null || true
 	then
 		bash /root/lscript/install.sh --yes
 	else
-		lscript_open_term "bash /root/lscript/install.sh"
+		if command -v gnome-terminal >/dev/null 2>&1 || command -v xterm >/dev/null 2>&1
+		then
+			lscript_open_term "bash /root/lscript/install.sh"
+		else
+			echo -e "No GUI terminal found. Continuing install in this shell..."
+			sleep 2
+			bash /root/lscript/install.sh
+		fi
 	fi
 	exit 0
 fi
@@ -150,7 +168,9 @@ echo -e "Copying script to /usr/local/bin/lscript"
 sleep 1
 mkdir -p /usr/local/bin/lscript
 cd /root/lscript
-cp /root/lscript/l /usr/local/bin/lscript
+# The main script source is /root/lscript/l; it is installed ONLY as
+# /usr/local/bin/lscript/lazy. The legacy `l` launcher was removed in
+# v2.2.4 (collides with `l` = `ls` on Ubuntu/Kali).
 cp /root/lscript/l /usr/local/bin/lscript/lazy
 cp /root/lscript/lh1 /usr/local/bin/lscript
 cp /root/lscript/lh2 /usr/local/bin/lscript
@@ -235,5 +255,10 @@ sleep 1
 clear
 echo -e "Open a NEW terminal and type 'lazy' to launch the script"
 sleep 4
-lscript_open_term "lazy"
+if command -v gnome-terminal >/dev/null 2>&1 || command -v xterm >/dev/null 2>&1
+then
+	lscript_open_term "lazy"
+else
+	echo -e "No GUI terminal found. Launch it from this shell with: lazy"
+fi
 exit

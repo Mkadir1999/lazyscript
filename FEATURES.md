@@ -22,8 +22,8 @@ chmod +x install.sh
 
 # Run
 lazy
-# or (legacy)
-l
+# `l` is NOT a launcher in v2.2.4+ — it was removed because it conflicts
+# with `l` = `ls` on Ubuntu/Kali. Use `lazy`.
 ```
 
 ---
@@ -34,8 +34,7 @@ l
 
 | You type | What happens |
 |----------|----------------|
-| `lazy` | Opens the full interactive menu (**recommended** — no `ls` alias conflict) |
-| `l` | Same as `lazy` (legacy; may list files if `l` = `ls` on your shell) |
+| `lazy` | Opens the full interactive menu (**the only supported launcher** in v2.2.4+) |
 | `start` | Enable monitor mode + MAC spoof in one step |
 | `stop` | Tear down monitor mode, restore interfaces |
 | `scan` | Scan for WiFi networks |
@@ -352,7 +351,7 @@ Open a new terminal and run `update-kali`.
 ```
 /root/lscript/
 ├── l                 # main script source
-├── lazy              # (installed to PATH as /usr/local/bin/lscript/lazy)
+├── lazy              # (installed to PATH as /usr/local/bin/lscript/lazy) — the only launcher
 ├── lh1–lh43           # handshake, deauth, WPS, WEP helpers
 ├── ls/                # MITM helpers (l131, l132, l133)
 ├── labs/              # lab/spoof scripts (scoped arpspoof, dnsspoof)
@@ -379,9 +378,8 @@ Open a new terminal and run `update-kali`.
 /root/handshakes/      # captures (WEP/, deauth/ subdirs)
 /root/wordlists/
 /usr/local/bin/lscript/
-├── lazy               # primary launcher — type lazy
-├── l                  # legacy launcher
-└── lh1, lh2, …        # helper scripts
+├── lazy               # THE launcher — type `lazy` (the `l` launcher was removed in v2.2.4)
+└── lh1, lh2, …        # helper scripts (called internally by the menu)
 ```
 
 ---

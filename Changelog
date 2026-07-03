@@ -2,7 +2,30 @@
 ==== Bug fixes + modern tools ====
 
 2.2.4
-==== URL hygiene + LPATH env override ====
+==== URL hygiene + LPATH env override + `l` launcher removed ====
+
+BREAKING CHANGE — the `l` launcher is GONE:
+- `install.sh` no longer copies the main script as `l` to `/usr/local/bin/lscript/`
+  and no longer creates the `/usr/local/bin/l` symlink.
+- The `~/.bashrc` snippet no longer adds `alias l=...` or `unalias l`.
+- The installer now actively removes any leftover `/usr/local/bin/l` or
+  `/usr/local/bin/lscript/l` from older installs so they cannot shadow `lazy`.
+- `l` is no longer listed as a reserved keyword for `ks` (custom shortcuts),
+  so users can now bind it.
+- Documentation (README, FEATURES, lscript.conf.example) is updated to
+  document `lazy` as the **only** supported launcher and to explain why `l`
+  was removed.
+- If a user has a leftover `alias l=...` or `unalias l` line in `~/.bashrc`
+  from an older install, the new installer deletes it.
+- `uninstall.sh` also strips any `alias l=`, `unalias l`, and the legacy
+  `# lscript launcher*` comment lines from `~/.bashrc`.
+
+WHY: the `l` launcher collided with Ubuntu/Kali's `l` = `ls` shell alias,
+which made `lazy` the de-facto launch command anyway. Removing `l` makes
+the install explicit and stops users from accidentally running lscript when
+they meant to list a directory.
+
+URL FIXES (verified all repos exist on GitHub):
 
 URL FIXES (verified all repos exist on GitHub):
 - 301 redirects updated to new homes:
@@ -88,11 +111,14 @@ LOOK-AND-FEEL
 ==== `lazy` launcher command ====
 
 - NEW primary command: **`lazy`** — launches lscript without fighting Ubuntu/Kali `l` = `ls` alias.
-- Install copies `/usr/local/bin/lscript/lazy`; `l` still works for backward compatibility.
+- Install copies `/usr/local/bin/lscript/lazy`; `l` still worked for backward compatibility in 2.2.2–2.2.3.
 - `~/.bashrc` aliases updated on install/update; README recommends `lazy` first.
 - Settings (`lscript.conf.example`), docs, labcheck, and update-kali messages now say **`lazy`**.
 - FIXED install update path (`--yes` when already installed) skipped lazy alias — launchers now run on every install/update.
 - NEW `/usr/local/bin/lazy` symlink so `lazy` works without relying on `.bashrc` alias alone.
+- *Superseded in v2.2.4:* the `l` launcher was removed entirely (it kept
+  fighting the Ubuntu/Kali `l` = `ls` alias even when an explicit
+  `alias lazy=...` was set). Use `lazy`.
 
 2.2.1
 ==== Hotfix: bash syntax + line endings ====

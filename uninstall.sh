@@ -23,11 +23,14 @@ then
 		sleep 4
 		if [ -d /usr/local/bin/lscript ]; then rm -r /usr/local/bin/lscript; fi
 		if [ -d /bin/lscript ]; then rm -r /bin/lscript; fi
+		# Remove the `lazy` symlink AND the (no-longer-installed) `l` symlink,
+		# in case an older install still left one around.
 		rm -f /usr/local/bin/lazy /usr/local/bin/l 2>/dev/null
 		if grep -q "/usr/local/bin/lscript" ~/.bashrc 2>/dev/null
 		then
 			sed -i 's|export PATH=/usr/local/bin/lscript:$PATH||g' ~/.bashrc
 		fi
+		# Strip every lscript-related alias / comment block we ever wrote.
 		if grep -q "lscript launcher" ~/.bashrc 2>/dev/null || grep -q "lscript launchers" ~/.bashrc 2>/dev/null
 		then
 			sed -i '/alias lazy=/d' ~/.bashrc 2>/dev/null
