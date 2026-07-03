@@ -339,12 +339,11 @@ function banner
 {
 	check_wlans
 	echo -e ""
-	echo -e "$COL         â–ˆâ–ˆâ•—      â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•—   â–ˆâ–ˆâ•—$CE v$VERSION"
-	echo -e "$COL         â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ•”â•â•â–ˆâ–ˆâ•—â•šâ•â•â–ˆâ–ˆâ–ˆâ•”â•â•šâ–ˆâ–ˆâ•— â–ˆâ–ˆâ•”â•$CE"
-	echo -e "$COL         â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘  â–ˆâ–ˆâ–ˆâ•”â•  â•šâ–ˆâ–ˆâ–ˆâ–ˆâ•”â• $CE   by "$COL"$LSCRIPT_AUTHOR$CE"
-	echo -e "$COL         â–ˆâ–ˆâ•‘     â–ˆâ–ˆâ•”â•â•â–ˆâ–ˆâ•‘ â–ˆâ–ˆâ–ˆâ•”â•    â•šâ–ˆâ–ˆâ•”â•  $CE"
-	echo -e "$COL    The  â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—   â–ˆâ–ˆâ•‘  script$CE"
-	echo -e "$COL         â•šâ•â•â•â•â•â•â•â•šâ•â•  â•šâ•â•â•šâ•â•â•â•â•â•â•   â•šâ•â•   $CE"
+	echo -e "$COL  .------------------------------------------------------------.$CE"
+	echo -e "$COL  |$CE                          LAZY/2                           $COL|$CE  v$VERSION"
+	echo -e "$COL  |$CE              WiFi  |  MITM  |  Tools  |  Labs           $COL|$CE   by $COL$LSCRIPT_AUTHOR$CE"
+	echo -e "$COL  |$CE                 The LAZY script for Kali                $COL|$CE"
+	echo -e "$COL  '------------------------------------------------------------'$CE"
 	echo -e ""$BS"https://github.com/${LSCRIPT_GITHUB_USER}/${LSCRIPT_GITHUB_REPO}"$CE""
 	echo -e ""$YS"if"$CE") Ifconfig           "$YS"l"$CE") Local IPs & gateways "$RS"|"$CE"  "$YS"scan"$CE") Arp-scan network"
 	if [[ "$WLANCHECKING" = "" ]]
@@ -12089,7 +12088,7 @@ function profile_load
 #------------------------------------
 ####################################
 defaults_l
-printf '\033]2;The LAZY script\a'
+printf '\033]2;LAZY/2 by KDR\a'
 if [[ "$ONETIMEPERLAUNCH" != "1" ]]
 then
 	one_time_per_launch_ks
