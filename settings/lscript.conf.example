@@ -1,5 +1,5 @@
-# lscript configuration — copy to settings/lscript.conf (created automatically on first run)
-# Edit values and restart lscript (type `lazy` to relaunch) to apply.
+# lazyscript configuration — copy to settings/lscript.conf (created automatically on first run)
+# Edit values and restart lazyscript (type `lazy` to relaunch) to apply.
 # Primary launcher: lazy  (the legacy `l` launcher was removed in v2.2.4)
 
 LAUNCHER=lazy

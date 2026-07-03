@@ -1,8 +1,8 @@
-# lscript v2.2.4 — Feature Reference
+# lazyscript v2.2.4 — Feature Reference
 
-**LAZY script (lscript)** is a Bash automation toolkit for **Kali Linux** that wraps **100+ security tools** behind a single command: **`lazy`**.
+**lazyscript** is a Bash automation toolkit for **Kali Linux** that wraps **100+ security tools** behind a single command: **`lazy`**.
 
-> **Maintained by KDR** — [Mkadir1999/lscript-2](https://github.com/Mkadir1999/lscript-2)
+> **Maintained by KDR** — [Mkadir1999/lazyscript](https://github.com/Mkadir1999/lazyscript)
 
 > **Legal notice — training & educational use only:** This software is for **authorized security training and education** in controlled environments (labs, courses, systems you own, or with explicit written permission). **Unauthorized use is illegal.** **KDR** accepts **no responsibility or liability** for any misuse, harm, or legal consequences. **You use this tool entirely at your own risk.**
 
@@ -13,8 +13,8 @@
 ```bash
 # Native Kali (root)
 cd
-git clone https://github.com/Mkadir1999/lscript-2.git
-cd lscript-2
+git clone https://github.com/Mkadir1999/lazyscript.git
+cd lazyscript
 chmod +x install.sh
 ./install.sh          # interactive
 # or
@@ -28,7 +28,7 @@ lazy
 
 ---
 
-## What lscript does
+## What lazyscript does
 
 ### One command, less typing
 
@@ -42,7 +42,7 @@ lazy
 | `wps` | WPS PIN attacks (lh3) |
 | `wep` | WEP cracking workflow (lh4) |
 | `install` | Multi-select tool installer (100+ tools) |
-| `update` | Git-pull latest **lscript** from GitHub |
+| `update` | Git-pull latest **lazyscript** from GitHub |
 | `update-kali` | Full **Kali OS** upgrade (apt update + full-upgrade + autoremove + autoclean) |
 | `doctor` | Health-check dependencies and paths |
 | `spoof` / `lab` | Training lab menu — DNS spoof, ARP MITM, email spoof, MAC, scope, audit log |

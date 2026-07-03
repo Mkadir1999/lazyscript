@@ -19,7 +19,7 @@ then
 	read -r CHCHUN
 	if [ "$CHCHUN" = "y" ]
 	then
-		echo -e "Ok, uninstalling everything that has to do with lscript on your system"
+		echo -e "Ok, uninstalling everything that has to do with lazyscript on your system"
 		sleep 4
 		if [ -d /usr/local/bin/lscript ]; then rm -r /usr/local/bin/lscript; fi
 		if [ -d /bin/lscript ]; then rm -r /bin/lscript; fi
@@ -30,7 +30,7 @@ then
 		then
 			sed -i 's|export PATH=/usr/local/bin/lscript:$PATH||g' ~/.bashrc
 		fi
-		# Strip every lscript-related alias / comment block we ever wrote.
+		# Strip every lazyscript-related alias / comment block we ever wrote.
 		if grep -q "lscript launcher" ~/.bashrc 2>/dev/null || grep -q "lscript launchers" ~/.bashrc 2>/dev/null
 		then
 			sed -i '/alias lazy=/d' ~/.bashrc 2>/dev/null
@@ -38,6 +38,8 @@ then
 			sed -i '/unalias l/d' ~/.bashrc 2>/dev/null
 			sed -i '/# lscript launcher/d' ~/.bashrc 2>/dev/null
 			sed -i '/# lscript launchers/d' ~/.bashrc 2>/dev/null
+			sed -i '/# lazyscript launcher/d' ~/.bashrc 2>/dev/null
+			sed -i '/# lazyscript launchers/d' ~/.bashrc 2>/dev/null
 		fi
 		if grep -q "/bin/lscript" ~/.bashrc 2>/dev/null
 		then
@@ -45,7 +47,7 @@ then
 		fi
 		echo -e "Done."
 		sleep 1
-		echo -e "You need to manually delete the lscript folder from your /root/ directory though..."
+		echo -e "You need to manually delete the lazyscript source folder from your /root/ directory though..."
 		sleep 2
 		echo -e "Press any key to exit..."
 		read -r

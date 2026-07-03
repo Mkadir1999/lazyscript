@@ -13,11 +13,11 @@ unset _arg
 
 if [[ $EUID -ne 0 ]]
 then
-	echo -e "lscript must be installed as root. Run: sudo ./install.sh"
+	echo -e "lazyscript must be installed as root. Run: sudo ./install.sh"
 	exit 1
 fi
 
-# Detect whether lscript was already configured before this run.
+# Detect whether lazyscript was already configured before this run.
 LSCRIPT_ALREADY_INSTALLED=0
 if grep -q "bin/lscript" ~/.bashrc 2>/dev/null || [[ -x /usr/local/bin/lazy ]]
 then
@@ -55,7 +55,7 @@ lscript_setup_launchers()
 	if ! grep -q "alias lazy=" ~/.bashrc 2>/dev/null
 	then
 		cat >> ~/.bashrc <<'EOF'
-# lscript launcher — type `lazy` to open the menu.
+# lazyscript launcher — type `lazy` to open the menu.
 # The legacy `l` launcher is intentionally NOT installed (it conflicts with
 # `l` = `ls` on Ubuntu/Kali). Use `lazy` instead.
 alias lazy='/usr/local/bin/lscript/lazy'
@@ -150,7 +150,7 @@ chmod +x /root/lscript/labs/*.sh 2>/dev/null || true
 	exit 0
 fi
 
-echo -e "Installing lscript..."
+	echo -e "Installing lazyscript..."
 sleep 1
 lscript_fix_line_endings /root/lscript
 echo -e "Fixing permissions"

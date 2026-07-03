@@ -1,10 +1,10 @@
-## lscript v2.2.4 — the LAZY script
+## lazyscript v2.2.4 — the LAZY script
 
-> **Launch with `lazy`** — the only supported way to open lscript. See **[FEATURES.md](FEATURES.md)** for the full reference.
+> **Launch with `lazy`** — the only supported way to open lazyscript. See **[FEATURES.md](FEATURES.md)** for the full reference.
 >
 > ⚠️ **v2.2.4 breaking change:** the legacy `l` launcher is **no longer installed**. It conflicted with the `l` = `ls` shell alias on Ubuntu/Kali and is removed entirely in this release. If you have an older install, run `sudo /root/lscript/install.sh --yes` to clean it up, then always launch with `lazy`.
 
-**Maintained by KDR** — https://github.com/Mkadir1999/lscript-2
+**Maintained by KDR** — https://github.com/Mkadir1999/lazyscript
 
 ---
 
@@ -20,16 +20,16 @@
 Full text: **[DISCLAIMER.md](DISCLAIMER.md)**
 
 <p align="center">
-<img src="docs/screenshot.png" alt="lscript main menu — by KDR"/>
+<img src="docs/screenshot.png" alt="lazyscript main menu — by KDR"/>
 </p>
 
 **This script will make your life easier, and of course faster. It's not only for noobs. It's for whoever wants to type less and do more.**
 
 ---
 
-## What is lscript?
+## What is lazyscript?
 
-lscript is a Bash automation toolkit for **Kali Linux** that wraps **100+ security tools** behind a single command (`lazy`). It automates WiFi penetration testing, MITM workflows, payload generation, OSINT, web-app testing, and lab/spoof scenarios — all from one menu.
+lazyscript is a Bash automation toolkit for **Kali Linux** that wraps **100+ security tools** behind a single command (`lazy`). It automates WiFi penetration testing, MITM workflows, payload generation, OSINT, web-app testing, and lab/spoof scenarios — all from one menu.
 
 ---
 
@@ -38,8 +38,8 @@ lscript is a Bash automation toolkit for **Kali Linux** that wraps **100+ securi
 ```bash
 # 1. Install (must be root)
 cd ~
-git clone https://github.com/Mkadir1999/lscript-2.git
-cd lscript-2
+git clone https://github.com/Mkadir1999/lazyscript.git
+cd lazyscript
 chmod +x install.sh
 sudo ./install.sh
 # or for CI / scripts:
@@ -75,7 +75,7 @@ After `lazy` is running, you can type these from the main menu prompt:
 | `wps` | WPS PIN attacks (pixie dust + bully) |
 | `wep` | WEP cracking workflow |
 | `install` | Multi-select tool installer (100+ tools) |
-| `update` | Git-pull latest **lscript** from GitHub |
+| `update` | Git-pull latest **lazyscript** from GitHub |
 | `update-kali` | Full **Kali OS** upgrade (apt update + full-upgrade + autoremove + autoclean) |
 | `doctor` / `health` | Health-check dependencies and paths |
 | `spoof` / `lab` | Training lab menu — DNS spoof, ARP MITM, email spoof, MAC, scope, audit log |
@@ -312,8 +312,8 @@ The installer ships with a multi-select menu (`install` / `reinstall_tools` / me
 ```bash
 cd
 apt-get update
-git clone https://github.com/Mkadir1999/lscript-2.git
-cd lscript-2
+git clone https://github.com/Mkadir1999/lazyscript.git
+cd lazyscript
 chmod +x install.sh
 sudo ./install.sh
 ```
@@ -336,10 +336,10 @@ See **[FEATURES.md](FEATURES.md)** for the full command reference, configuration
 
 ### `l` only lists files (shows Changelog, README, l, lh1…)
 
-This is the most common confusion. The `l` command in your shell is **not** lscript — it's either:
+This is the most common confusion. The `l` command in your shell is **not** lazyscript — it's either:
 
 - Ubuntu's built-in `l` → `ls` alias (from `~/.bashrc`), or
-- A leftover symlink from a very old lscript install
+- A leftover symlink from a very old lazyscript install
 
 **v2.2.4+ removed the `l` launcher entirely.** The correct command is `lazy`. Run:
 
@@ -361,7 +361,7 @@ Then launch with `lazy` and you're set. Going forward, the install script also r
 **If `lazy` is not found at all** (fresh box, no install), do a fresh install:
 
 ```bash
-cd ~/lscript-2
+cd ~/lazyscript
 chmod +x install.sh
 sudo ./install.sh --yes
 sudo -i
@@ -387,7 +387,7 @@ file /usr/local/bin/lscript/lazy
 
 ### Installer says `lscript_term: install gnome-terminal or xterm`
 
-On minimal Kali installs, `gnome-terminal` and `xterm` may both be missing. Older lscript installers tried to relaunch themselves in a GUI terminal after copying into `/root/lscript`, which caused the install to stop here.
+On minimal Kali installs, `gnome-terminal` and `xterm` may both be missing. Older lazyscript installers tried to relaunch themselves in a GUI terminal after copying into `/root/lscript`, which caused the install to stop here.
 
 **Current fix (v2.2.4+):** the installer now falls back to the **current shell** and continues automatically.
 
@@ -408,9 +408,9 @@ You do **not** need to install `xterm` just to finish the setup.
 | Menu, install, `doctor`, `labcheck`, many CLI tools | Real WiFi monitor mode, handshake capture, WPS/WEP over wireless |
 | `spoof` / MITM labs on a **wired** lab network | USB WiFi passthrough (hard to set up; often unreliable) |
 
-- Install from your clone: `cd ~/lscript-2 && sudo ./install.sh --yes`
+- Install from your clone: `cd ~/lazyscript && sudo ./install.sh --yes`
 - Always launch as root: `sudo -i` then `lazy`
-- lscript will show a **WSL warning** on startup — expected
+- lazyscript will show a **WSL warning** on startup — expected
 - For full WiFi labs, use **native Kali** on bare metal or a VM with USB WiFi passthrough
 
 ### `syntax error near unexpected token` (often line ~9836 or `do\r`)
@@ -430,7 +430,7 @@ lazy
 **Or reinstall from a fresh clone** (install.sh now strips CRLF automatically):
 
 ```bash
-cd ~/lscript-2
+cd ~/lazyscript
 git pull
 sudo ./install.sh --yes
 sudo -i

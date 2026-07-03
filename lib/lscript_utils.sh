@@ -148,7 +148,7 @@ lscript_update_kali()
 lscript_install_update_kali_alias()
 {
 	local bashrc="${HOME}/.bashrc"
-	local marker="# lscript update-kali alias"
+	local marker="# lazyscript update-kali alias"
 	[[ -f "$bashrc" ]] || touch "$bashrc"
 	if grep -q "alias update-kali=" "$bashrc" 2>/dev/null || grep -q "$marker" "$bashrc" 2>/dev/null
 	then

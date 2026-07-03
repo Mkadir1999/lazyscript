@@ -1,6 +1,6 @@
 #! /bin/bash
 ###############################################################################
-#  lscript - the LAZY script (Kali / Debian / Ubuntu)
+#  lazyscript - the LAZY script (Kali / Debian / Ubuntu)
 #  -------------------------------------------------------------------------
 #  A unified launcher for ~110+ security tools, organised by category:
 #    * Wifi / Wireless
@@ -30,14 +30,14 @@
 #    * The ~/.bashrc alias is `lazy` (NOT `l`, which collides with `ls`).
 #
 #  Author : KDR
-#  Repo   : https://github.com/Mkadir1999/lscript-2
+#  Repo   : https://github.com/Mkadir1999/lazyscript
 #  License: See LICENSE.md
 ###############################################################################
 
 # set -x
 VERSION=2.2.4
 LSCRIPT_GITHUB_USER="Mkadir1999"
-LSCRIPT_GITHUB_REPO="lscript-2"
+LSCRIPT_GITHUB_REPO="lazyscript"
 LSCRIPT_GITHUB_BRANCH="main"
 LSCRIPT_AUTHOR="KDR"
 LSCRIPT_GITHUB_URL="https://github.com/${LSCRIPT_GITHUB_USER}/${LSCRIPT_GITHUB_REPO}.git"
@@ -342,12 +342,12 @@ function banner
 	echo -e "$COL  .------------------------------------------------------------.$CE"
 	echo -e "$COL  |$CE                          LAZY/2                           $COL|$CE  v$VERSION"
 	echo -e "$COL  |$CE              WiFi  |  MITM  |  Tools  |  Labs           $COL|$CE   by $COL$LSCRIPT_AUTHOR$CE"
-	echo -e "$COL  |$CE                 The LAZY script for Kali                $COL|$CE"
+	echo -e "$COL  |$CE                The lazyscript for Kali                 $COL|$CE"
 	echo -e "$COL  '------------------------------------------------------------'$CE"
 	echo -e ""$BS"https://github.com/${LSCRIPT_GITHUB_USER}/${LSCRIPT_GITHUB_REPO}"$CE""
 	echo -e ""$BS"Quick commands:"$CE" "$YS"lazy"$CE" relaunch  "$YS"doctor"$CE" health  "$YS"spoof"$CE" labs  "$YS"scan"$CE" arp-scan"
 	echo -e "                "$YS"if"$CE" ifconfig  "$YS"l"$CE" local IPs/gateways  "$YS"s"$CE" settings  "$YS"d"$CE" disclaimer"
-	echo -e "                "$YS"update"$CE" lscript update  "$YS"update-kali"$CE" apt upgrade"
+	echo -e "                "$YS"update"$CE" lazyscript update  "$YS"update-kali"$CE" apt upgrade"
 	echo -e ""
 	echo -e ""$BS"Wireless & system:"$CE""
 	if [[ "$WLANCHECKING" = "" ]]
