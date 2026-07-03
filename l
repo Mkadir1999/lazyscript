@@ -345,7 +345,11 @@ function banner
 	echo -e "$COL  |$CE                 The LAZY script for Kali                $COL|$CE"
 	echo -e "$COL  '------------------------------------------------------------'$CE"
 	echo -e ""$BS"https://github.com/${LSCRIPT_GITHUB_USER}/${LSCRIPT_GITHUB_REPO}"$CE""
-	echo -e ""$YS"if"$CE") Ifconfig           "$YS"l"$CE") Local IPs & gateways "$RS"|"$CE"  "$YS"scan"$CE") Arp-scan network"
+	echo -e ""$BS"Quick commands:"$CE" "$YS"lazy"$CE" relaunch  "$YS"doctor"$CE" health  "$YS"spoof"$CE" labs  "$YS"scan"$CE" arp-scan"
+	echo -e "                "$YS"if"$CE" ifconfig  "$YS"l"$CE" local IPs/gateways  "$YS"s"$CE" settings  "$YS"d"$CE" disclaimer"
+	echo -e "                "$YS"update"$CE" lscript update  "$YS"update-kali"$CE" apt upgrade"
+	echo -e ""
+	echo -e ""$BS"Wireless & system:"$CE""
 	if [[ "$WLANCHECKING" = "" ]]
 	then
 		echo -e ""$RS" 1"$CE") Enable "$RS"$WLANN"$CE"${SPACESN}"$RS"d1"$CE") Disable "$RS"$WLANN"$CE"${SPACESN}  "$RS"|"$CE" "$YS"start"$CE") Start monitor mode"
@@ -354,13 +358,12 @@ function banner
 		echo -e ""$YS" 1"$CE") Enable $WLANN${SPACESN}"$YS"d1"$CE") Disable $WLANN${SPACESN}  "$RS"|"$CE" "$YS"start"$CE") Start monitor mode"
 		echo -e ""$YS" 2"$CE") Enable $WLANNM${SPACESM}"$YS"d2"$CE") Disable $WLANNM${SPACESM}  "$RS"|"$CE"  "$YS"stop"$CE") Stop monitor mode"
 	fi
-	echo -e ""$YS" 3"$CE") Change MAC        "$YS"d3"$CE") Restore original MAC "$RS"|"$CE""$YS"update"$CE") lscript update    "$YS"update-kali"$CE") apt upgrade"
-	echo -e ""$RS"|"$CE"  "$YS"lazy"$CE") Launch lscript   "$YS"spoof"$CE") Lab menu   "$YS"doctor"$CE") Health check"
+	echo -e ""$YS" 3"$CE") Change MAC        "$YS"d3"$CE") Restore original MAC"
 	if [[ -f /usr/bin/anonym8 ]]
 	then
-	echo -e ""$YS" 4"$CE") Enable anonym8    "$YS"d4"$CE") Disable anonym8      "$RS"|"$CE""$YS"errors"$CE") Fix some errors"
+	echo -e ""$YS" 4"$CE") Enable anonym8    "$YS"d4"$CE") Disable anonym8      "$RS"|"$CE""$YS"errors"$CE") Fix errors"
 	else
-	echo -e ""$RS" 4"$CE") Enable anonym8    "$RS"d4"$CE") Disable anonym8      "$RS"|"$CE""$YS"errors"$CE") Fix some errors"
+	echo -e ""$RS" 4"$CE") Enable anonym8    "$RS"d4"$CE") Disable anonym8      "$RS"|"$CE""$YS"errors"$CE") Fix errors"
 	fi
 	if [[ -f /usr/bin/anonsurf ]]
 	then
@@ -370,8 +373,10 @@ function banner
 	echo -e ""$RS" 5"$CE") Enable anonsurf   "$RS"d5"$CE") Disable anonsurf     "$RS"|"$CE"    "$YS"ks"$CE") Keyboard shortucts"
 	echo -e ""$RS" 6"$CE") Anonsurf's status "$RS"d6"$CE") Restart anonsurf     "$RS"|"$CE"     "$YS"d"$CE") Disclaimer"
 	fi
-	echo -e ""$YS" 7"$CE") View public IP                             "$RS"|"$CE"     "$YS"s"$CE") Go to settings menu"
+	echo -e ""$YS" 7"$CE") View public IP                             "$RS"|"$CE"     "$YS"s"$CE") Settings menu"
 	echo -e ""$YS" 8"$CE") View MAC"
+	echo -e ""
+	echo -e ""$BS"Tool menus:"$CE""
 	echo -e ""$YS" 9"$CE") TOOLS             "$YS"15"$CE") Lab / spoof menu        "$YS"22"$CE") Show bandwidth"
 	if [[ -f /root/ngrok ]]
 	then
@@ -9806,7 +9811,7 @@ function main_options
 	elif [[ "$YORNAA" = "9" ]]
 	then
 		tools_menu
-	elif [[ "$YORNAA" = "l" ]]
+	elif [[ "$YORNAA" = "lazy" ]]
 	then
 		clear 
 		exec bash "$0"
