@@ -31,6 +31,7 @@ lscript_fix_line_endings()
 	local root="${1:-/root/lscript}"
 	find "$root" -type f \( -name '*.sh' -o -name 'l' -o -name 'lh*' -o -name 'l1*.sh' -o -name 'l13*.sh' \) 2>/dev/null | while IFS= read -r _f
 	do
+		sed -i '1s/^\xEF\xBB\xBF//' "$_f" 2>/dev/null || true
 		sed -i 's/\r$//' "$_f" 2>/dev/null || true
 	done
 }
