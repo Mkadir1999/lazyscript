@@ -6897,7 +6897,7 @@ function terms_of_use
 	echo -e "$PAKTC"
 	$READAK
 	clear
-	echo -e ""$RS"TERMS OF USE â€” TRAINING & EDUCATIONAL PURPOSES ONLY"$CE""
+	echo -e ""$RS"TERMS OF USE - TRAINING & EDUCATIONAL PURPOSES ONLY"$CE""
 	echo -e ""
 	echo -e "This tool is intended for "$YS"authorized security training and education"$CE" only."
 	echo -e "Use it only in labs, courses, or on networks/systems you "$YS"own"$CE""
@@ -6907,24 +6907,46 @@ function terms_of_use
 	echo -e "The maintainer ($LSCRIPT_AUTHOR) accepts "$RS"no responsibility or liability"$CE""
 	echo -e "for any misuse of this software. You use this tool entirely at your own risk."
 	echo -e ""
-	echo -e "Do you agree to use this tool only for lawful training/educational purposes"
-	echo -e "and accept full personal responsibility? ("$YS"YES"$CE"/"$YS"NO"$CE"): "
-	read -r YESORNO
-	if [[ "$YESORNO" = "YES" ]]
-	then
-		{
-			echo "AGREED=$(date -Iseconds 2>/dev/null || date)"
-			echo "PURPOSE=training_and_educational_use_only"
-			echo "USER_ACCEPTS_FULL_RESPONSIBILITY=yes"
-			echo "MAINTAINER_NO_LIABILITY=$LSCRIPT_AUTHOR"
-			echo "You have agreed to use this tool for training/educational purposes only, at your own responsibility."
-		} > "$LPATH"/IAGREE.txt
-		sleep 1
-		clear
-	else
-		echo -e "You didn't type 'YES' , so you cannot continue"
-		sleep 4
-	fi
+	while true
+	do
+		echo -e "Do you agree to use this tool only for lawful training/educational purposes"
+		echo -e "and accept full personal responsibility? ("$YS"YES"$CE"/"$YS"NO"$CE"): "
+		read -r YESORNO
+		case "${YESORNO^^}" in
+			YES|Y)
+				mkdir -p "$LPATH" 2>/dev/null
+				{
+					echo "AGREED=$(date -Iseconds 2>/dev/null || date)"
+					echo "PURPOSE=training_and_educational_use_only"
+					echo "USER_ACCEPTS_FULL_RESPONSIBILITY=yes"
+					echo "MAINTAINER_NO_LIABILITY=$LSCRIPT_AUTHOR"
+					echo "You have agreed to use this tool for training/educational purposes only, at your own responsibility."
+				} > "$LPATH"/IAGREE.txt
+				sleep 1
+				clear
+				break
+				;;
+			NO|N)
+				echo -e "You did not accept the terms, so you cannot continue."
+				sleep 3
+				;;
+			*)
+				echo -e "Please type "$YS"YES"$CE" or "$YS"NO"$CE"."
+				sleep 2
+				clear
+				echo -e ""$RS"TERMS OF USE - TRAINING & EDUCATIONAL PURPOSES ONLY"$CE""
+				echo -e ""
+				echo -e "This tool is intended for "$YS"authorized security training and education"$CE" only."
+				echo -e "Use it only in labs, courses, or on networks/systems you "$YS"own"$CE""
+				echo -e "or have "$YS"explicit written permission"$CE" to test."
+				echo -e ""
+				echo -e ""$RS"Unauthorized access to systems is illegal."$CE""
+				echo -e "The maintainer ($LSCRIPT_AUTHOR) accepts "$RS"no responsibility or liability"$CE""
+				echo -e "for any misuse of this software. You use this tool entirely at your own risk."
+				echo -e ""
+				;;
+		esac
+	done
 	exec bash "$0"
 }
 function eternalblue
