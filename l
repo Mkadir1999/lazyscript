@@ -262,7 +262,7 @@ function is_it_an_ip()
 	IIAI=${#IIA}
 	if [[ "$IIA" = "" ]]
 	then
-		echo -e ""$RS"Error 9. No parameteres passed"
+		echo -e ""$RS"Error 9. No parameters passed"
 		sleep 2
 	else
 		if [[ "$IIAI" -le 15 && "$IIAI" -ge 7 ]]
@@ -277,7 +277,7 @@ function latest_changelog
 {
 	clear
 	printf '\033]2;LATEST CHANGELOG\a'
-	echo -e ""$BS"Wellcome to version $VERSION"$CE""
+	echo -e ""$BS"Welcome to version $VERSION"$CE""
 	echo -e "What is included in this update: "
 	cat "$LPATH"/Changelog | head -n $LATESTCHANGELOGLINES
 	echo -e "$PAKTC"
@@ -4506,7 +4506,7 @@ function remote_access
 					then
 						MTYPE="windows"
 					else
-						echo -e ""$RS"Wrong choise"$CE""
+						echo -e ""$RS"Wrong choice"$CE""
 						sleep 1
 						clear
 						continue
@@ -4879,7 +4879,7 @@ function remote_access
 					fi					
 					break
 				else
-					echo -e ""$RS"Wrong choise"$CE""
+					echo -e ""$RS"Wrong choice"$CE""
 					sleep 2
 					continue
 				fi
@@ -5220,7 +5220,7 @@ function remote_access
 				then
 					TAROS="android"
 				else
-					echo -e "Wrong choice.Returning to main manu..."
+					echo -e "Wrong choice. Returning to main menu..."
 					sleep 2
 					exec bash "$0"
 				fi
@@ -6686,7 +6686,7 @@ function update_lscript
 				kill -- -$$ 2>/dev/null; kill -TERM $PPID 2>/dev/null; sleep 1; kill -KILL $PPID 2>/dev/null
 			else 
 				clear
-				echo -e "You didnt select "y" so you go back..."
+				echo -e 'You did not select "y", so you go back...'
 				sleep 3
 				exec bash "$0"
 			fi
@@ -6705,7 +6705,7 @@ function update_lscript
 		clear
 		echo -e "There is no connection."
 		sleep 1
-		echo -e "Maybe you should type 'stop' in the main manu to gain internet access again"
+		echo -e "Maybe you should type 'stop' in the main menu to gain internet access again"
 		echo -e ""
 		echo -e "$PAKTGB"
 		$READAK
@@ -7253,7 +7253,7 @@ function new_terminal
 			sleep 1
 			FJC=0
 			export FJC
-			lscript_term --geometry 87x35+9999+0 --disown -- lh1
+			lscript_term --geometry 87x35+9999+0 --disown -- bash "$LPATH/lh1"
 			sleep 1
 			exec bash "$0"
 			break
@@ -7262,7 +7262,7 @@ function new_terminal
 			clear
 			echo -e "Moving into new terminal..."
 			sleep 1
-			lscript_term --geometry 80x25+9999+0 --disown -- lh3
+			lscript_term --geometry 80x25+9999+0 --disown -- bash "$LPATH/lh3"
 			sleep 1
 			exec bash "$0"
 			break
@@ -7270,7 +7270,7 @@ function new_terminal
 		then
 			echo -e "Moving into new terminal..."
 			sleep 1
-			lscript_term --geometry 80x25+9999+0 --disown -- lh4
+			lscript_term --geometry 80x25+9999+0 --disown -- bash "$LPATH/lh4"
 			sleep 1
 			exec bash "$0"
 			break
@@ -10214,7 +10214,7 @@ function lab_dns_spoof_wizard
 	if [[ ! -f "$HOSTS" ]]
 	then
 		cp "$LPATH/labs/hosts.lab.example" "$HOSTS" 2>/dev/null || touch "$HOSTS"
-		echo -e "Created $HOSTS â€” edit it, then run again."
+		echo -e "Created $HOSTS - edit it, then run again."
 		mousepad "$HOSTS" 2>/dev/null || nano "$HOSTS"
 		return
 	fi
@@ -10449,7 +10449,7 @@ function doctor_menu
 		TERMINALTITLE="DOCTOR (HEALTH CHECK)"
 		dash_calc
 		printf '\033]2;DOCTOR\a'
-		echo -e ""$BS"lscript v$VERSION doctor â€” checks for common breakages."$CE""
+		echo -e ""$BS"lscript v$VERSION doctor - checks for common breakages."$CE""
 		echo -e ""
 		DOCTORFAILS=0
 		echo -e ""$YS"System:"$CE""
@@ -10460,7 +10460,7 @@ function doctor_menu
 			then
 				echo -e "  ["$BS"WSL "$CE"]  WSL2 with wireless adapter visible"
 			else
-				echo -e "  ["$RS"WSL "$CE"]  WSL2 â€” no WiFi adapter (wireless tools will fail)"
+				echo -e "  ["$RS"WSL "$CE"]  WSL2 - no WiFi adapter (wireless tools will fail)"
 				DOCTORFAILS=$((DOCTORFAILS+1))
 			fi
 		else
@@ -10577,7 +10577,7 @@ function doctor_menu
 		elif [[ "$DCH" = "2" ]]
 		then
 			{
-				echo "lscript doctor report â€” v$VERSION â€” $(date)"
+				echo "lscript doctor report - v$VERSION - $(date)"
 				echo "---"
 				echo "DOCTORFAILS=$DOCTORFAILS"
 				echo "PATH=$PATH"

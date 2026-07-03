@@ -16,14 +16,13 @@ LPATH="${LPATH:-/root/lscript}"
 [[ -f "$LPATH/lib/lscript_term.sh" ]] && source "$LPATH/lib/lscript_term.sh"
 [[ -f "$LPATH/lib/lscript_conf.sh" ]] && source "$LPATH/lib/lscript_conf.sh" && lscript_load_conf && lscript_apply_colors
 
-WLANNM=$(cat /root/lscript/wlanmon.txt)
+WLANNM=$(cat "$LPATH/wlanmon.txt" 2>/dev/null)
 export WLANNM
 SCW=1
 function defaults_lh3
 {
 #path for lscript
-	LPATH="/root/lscript"
-	export LPATH
+	export LPATH="${LPATH:-/root/lscript}"
 #path for keyboard shortcuts
 	KSPATH=""$LPATH"/ks"
 	export KSPATH
@@ -1126,11 +1125,9 @@ then
 	fi
 elif [[ "$YN" = "7" ]]
 then
-	if [[ -f /root/bully/src/bully.py ]]
+	if command -v bully >/dev/null 2>&1
 	then
-		cd /root/bully/src
-		./bully.py
-		cd
+		bully
 	else
 		echo -e ""$RS"Bully isn't installed.Type '"$CE""$YS"install"$CE""$RS"'to stop monitor mode and install it."$CE""
 		read INSTALL

@@ -2,14 +2,13 @@
 LPATH="${LPATH:-/root/lscript}"
 [[ -f "$LPATH/lib/lscript_term.sh" ]] && source "$LPATH/lib/lscript_term.sh"
 [[ -f "$LPATH/lib/lscript_conf.sh" ]] && source "$LPATH/lib/lscript_conf.sh" && lscript_load_conf && lscript_apply_colors
-WLANNM=$(cat /root/lscript/wlanmon.txt)
+WLANNM=$(cat "$LPATH/wlanmon.txt" 2>/dev/null)
 export WLANNM
 #-----------------FUNCTIONS-----------------
 function defaults_lh1
 {
 #path for lscript
-	LPATH="/root/lscript"
-	export LPATH
+	export LPATH="${LPATH:-/root/lscript}"
 #path for keyboard shortcuts
 	KSPATH=""$LPATH"/ks"
 	export KSPATH
@@ -122,7 +121,7 @@ then
 	then
 		rm $HANDCAP
 	fi
-	lscript_term --quiet --geometry 70x10+0+0 --disown -- lh2
+	lscript_term --quiet --geometry 70x10+0+0 --disown -- bash "$LPATH/lh2"
 	HANDFORDEAUTH="/root/handshakes/$HANDF-01.csv"
 	export HANDFORDEAUTH
 	airodump-ng --bssid $TARGB -c $TARGC -w /root/handshakes/$HANDF $WLANNM # & jobs -p > /root/lscript/dpidd.txt
@@ -166,7 +165,7 @@ else
 	fi
 	HANDF="deauth"
 	HANDFORDEAUTH="/root/handshakes/deauth-01.csv"
-	lscript_term --quiet --geometry 70x10+0+0 --disown -- lh2
+	lscript_term --quiet --geometry 70x10+0+0 --disown -- bash "$LPATH/lh2"
 	airodump-ng --bssid $TARGB -c $TARGC -w /root/handshakes/$HANDF $WLANNM
 	if [[ -f "$LPATH"/dpid.txt ]]
 	then
@@ -207,7 +206,7 @@ else
 		then
 			rm $HANDFFP
 		fi
-		lscript_term --quiet --geometry 70x10+0+0 --disown -- lh2
+		lscript_term --quiet --geometry 70x10+0+0 --disown -- bash "$LPATH/lh2"
 		airodump-ng --bssid $TARGB -c $TARGC -w /root/handshakes/$HANDF $WLANNM
 		if [[ -f "$LPATH"/dpid.txt ]]
 		then
@@ -401,7 +400,7 @@ function capture_again
 			read CAGAIN
 			if [[ ! "$CAGAIN" = "n" ]]
 			then
-				lscript_term --quiet --geometry 70x10+0+0 --disown -- lh2
+				lscript_term --quiet --geometry 70x10+0+0 --disown -- bash "$LPATH/lh2"
 				airodump-ng --bssid $TARGB -c $TARGC -w /root/handshakes/$HANDF $WLANNM
 				validhandshake
 				exec bash "$0"

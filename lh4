@@ -18,7 +18,7 @@ PAKTC="Press "$YS"any key$CE to continue..."
 PAKTGB="Press "$YS"any key$CE to go back..."
 
 ####################################
-WLANNM=$(cat /root/lscript/wlanmon.txt)
+WLANNM=$(cat "$LPATH/wlanmon.txt" 2>/dev/null)
 export WLANNM
 function dash_calc
 {
@@ -363,7 +363,7 @@ do
 		then
 			continue
 		fi
-		MYMAC=$(macchanger -s wlan0mon | grep "Current" | cut -d ' ' -f5)
+		MYMAC=$(macchanger -s "$WLANNM" | grep "Current" | cut -d ' ' -f5)
 		size=${#MYMAC}
 		if [[ "$size" != 17 ]]
 		then

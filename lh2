@@ -21,8 +21,7 @@ LPATH="${LPATH:-/root/lscript}"
 function defaults_lh2
 {
 #path for lscript
-	LPATH="/root/lscript"
-	export LPATH
+	export LPATH="${LPATH:-/root/lscript}"
 #yellow start 
 	YS="\e[1;33m"
 #blue start 
@@ -234,7 +233,7 @@ echo -e "$DPID" > "$LPATH"/dpid.txt
 printf '\033]2;DEAUTH MENU\a'
 k=1
 REDEAUTH="n"
-WLANNM=$(cat /root/lscript/wlanmon.txt 2>/dev/null)
+WLANNM=$(cat "$LPATH/wlanmon.txt" 2>/dev/null)
 export WLANNM
 ####################################
 # find_pid - sets AVPID to a unique, rotating pid-tracking filename
@@ -382,7 +381,7 @@ do
 			then
 				export Del
 				export HANDCAP
-				lscript_term --geometry 50x20+0+999999 --title "AUTOCHECK FOR HANDSHAKE" --disown -- lh21
+				lscript_term --geometry 50x20+0+999999 --title "AUTOCHECK FOR HANDSHAKE" --disown -- bash "$LPATH/lh21"
 			else
 				echo -e ""$RS"Invalid interval"$CE""
 				sleep 2
