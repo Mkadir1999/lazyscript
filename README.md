@@ -385,6 +385,22 @@ ls -la /usr/local/bin/lscript/lazy
 file /usr/local/bin/lscript/lazy
 ```
 
+### Installer says `lscript_term: install gnome-terminal or xterm`
+
+On minimal Kali installs, `gnome-terminal` and `xterm` may both be missing. Older lscript installers tried to relaunch themselves in a GUI terminal after copying into `/root/lscript`, which caused the install to stop here.
+
+**Current fix (v2.2.4+):** the installer now falls back to the **current shell** and continues automatically.
+
+If you already hit this error on an older copy, continue manually:
+
+```bash
+sudo bash /root/lscript/install.sh --yes
+hash -r
+lazy
+```
+
+You do **not** need to install `xterm` just to finish the setup.
+
 ### Ubuntu on Windows (WSL / WSL2)
 
 | Works | Does not work |
@@ -420,6 +436,36 @@ sudo ./install.sh --yes
 sudo -i
 lazy
 ```
+
+### `lazy` prints `#!: not found`, `[[ : not found`, or `function: not found`
+
+This means the launcher was executed by `/bin/sh` instead of `bash`. In practice, the usual cause is a **UTF-8 BOM** at the start of `/usr/local/bin/lscript/lazy`, which breaks the shebang on Linux.
+
+Symptoms usually look like this:
+
+```bash
+/usr/local/bin/lazy: 1: #!: not found
+/usr/local/bin/lazy: 48: [[: not found
+/usr/local/bin/lazy: 62: function: not found
+```
+
+**Quick fix (run as root):**
+
+```bash
+sed -i '1s/^\xEF\xBB\xBF//' /root/lscript/l /usr/local/bin/lscript/lazy
+chmod +x /root/lscript/l /usr/local/bin/lscript/lazy
+hash -r
+lazy
+```
+
+**Verify the launcher is clean:**
+
+```bash
+file /usr/local/bin/lscript/lazy
+bash -n /usr/local/bin/lscript/lazy
+```
+
+The repo and installer now strip both **CRLF** and **UTF-8 BOM** automatically, so a fresh `git pull` + `sudo ./install.sh --yes` should prevent this from returning.
 
 ### Still stuck?
 

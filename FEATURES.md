@@ -322,9 +322,11 @@ Open a new terminal and run `update-kali`.
 ```
 
 - Requires root
-- Auto-detects first install (`i`) vs update (`u`) from `~/.bashrc`
+- Auto-detects first install vs update from the existing lscript setup (`/usr/local/bin/lazy` / PATH marker)
 - Skips keypress prompts; does not open a new terminal at the end
 - Prints: `Non-interactive install complete. Open a terminal and type: lazy`
+- If `gnome-terminal` / `xterm` is missing, install continues in the current shell
+- Strips Windows **CRLF** and UTF-8 **BOM** from shell scripts during install/update
 
 ---
 
@@ -397,6 +399,13 @@ Open a new terminal and run `update-kali`.
 ## Troubleshooting
 
 Full install and launch help (use **`lazy`**, WSL, root): **[README.md — Troubleshooting](README.md#troubleshooting)**.
+
+That section covers the most common failures users report:
+
+- `l` listing files instead of opening lscript
+- `lscript_term: install gnome-terminal or xterm`
+- `syntax error near unexpected token` from CRLF line endings
+- `#!: not found`, `[[ : not found`, or `function: not found` when a BOM breaks the bash shebang
 
 ## Uninstall
 
