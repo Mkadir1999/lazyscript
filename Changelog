@@ -1,5 +1,23 @@
-2.2.3
-==== Bug fixes + modern tools ====
+2.2.5
+==== Organization + safe audit tools ====
+
+- NEW Other Tools entries:
+  * Amass - passive/deep asset discovery
+  * Feroxbuster - fast content discovery
+  * WhatWeb - web technology fingerprinting
+  * Lynis - local Linux security audit
+  * checksec - binary hardening checks
+- NEW "Safe audit" guided workflow, available as `safeaudit` / `audit` or from Other Tools:
+  * passive domain recon report (amass + subfinder)
+  * web fingerprint report (whatweb + httpx)
+  * local Linux audit (lynis)
+  * binary hardening check (checksec)
+  Reports are saved under `$LPATH/reports`.
+- Doctor now checks the modern recon/defensive tools so missing installs are easier to spot.
+- Installer now copies dotfiles when moving a clone into `/root/lscript` and guards the old `/root/lscript`
+  delete with a realpath check.
+- Uninstaller now guards `/usr/local/bin/lscript` and `/bin/lscript` cleanup with realpath checks.
+- Bumped VERSION and version.txt to 2.2.5.
 
 2.2.4
 ==== URL hygiene + LPATH env override + `l` launcher removed ====

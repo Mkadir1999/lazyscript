@@ -1,4 +1,4 @@
-## lazyscript v2.2.4 — the LAZY script
+## lazyscript v2.2.5 — the LAZY script
 
 > **Launch with `lazy`** — the only supported way to open lazyscript. See **[FEATURES.md](FEATURES.md)** for the full reference.
 >
@@ -78,6 +78,7 @@ After `lazy` is running, you can type these from the main menu prompt:
 | `update` | Git-pull latest **lazyscript** from GitHub |
 | `update-kali` | Full **Kali OS** upgrade (apt update + full-upgrade + autoremove + autoclean) |
 | `doctor` / `health` | Health-check dependencies and paths |
+| `safeaudit` / `audit` | Guided passive/defensive checks |
 | `spoof` / `lab` | Training lab menu — DNS spoof, ARP MITM, email spoof, MAC, scope, audit log |
 | `labcheck` | Verify lab prerequisites (root, deps, scope) |
 | `refresh` / `toolsup` | `git pull` all installed tools under `/root` |
@@ -158,7 +159,7 @@ The installer ships with a multi-select menu (`install` / `reinstall_tools` / me
 | **instagram-py** | Instagram brute-force script |
 | **SiteBroker** | Information gathering + auto-exploiter |
 
-### 🔎 Information gathering / OSINT (15)
+### 🔎 Information gathering / OSINT (16)
 
 | Tool | What it does |
 |---|---|
@@ -177,8 +178,9 @@ The installer ships with a multi-select menu (`install` / `reinstall_tools` / me
 | **Naabu** ⭐ | Fast port scanner (ProjectDiscovery) |
 | **Sherlock** ⭐ | Hunt social media accounts by username (300+ sites) |
 | **Gowitness** ⭐ | Web screenshot recon (Chrome headless) |
+| **Amass** ⭐ | Passive/deep asset discovery and subdomain enumeration |
 
-### 🌐 Web / web-app (8)
+### 🌐 Web / web-app (10)
 
 | Tool | What it does |
 |---|---|
@@ -186,12 +188,14 @@ The installer ships with a multi-select menu (`install` / `reinstall_tools` / me
 | **patator** | Multi-protocol brute-forcer (SSH, FTP, HTTP, SMTP, MySQL, …) |
 | **Nuclei** ⭐ | (see Info Gathering — same tool, used here for web-app CVE scanning) |
 | **ffuf** ⭐ | Fast Go web fuzzer (dirs, vhosts, parameters) |
+| **Feroxbuster** ⭐ | Fast recursive content discovery |
+| **WhatWeb** ⭐ | Web technology fingerprinting |
 | **Zeus-Scanner** | Advanced SQLi scanner (training only) |
 | **LFI-Suite** | Local File Inclusion scanner/exploit |
 | **FindSploit** | Search Exploit-DB / Rapid7 / packetstorm from terminal |
 | **howdoi** | Stack-Overflow-style code answers from the CLI |
 
-### 🔧 Other / general / modern (33)
+### 🔧 Other / general / modern (38)
 
 | Tool | What it does |
 |---|---|
@@ -208,6 +212,8 @@ The installer ships with a multi-select menu (`install` / `reinstall_tools` / me
 | **Ezsploit** | Metasploit automation for LAN |
 | **Kerbrute** ⭐ | AD Kerberos username enum / password spray (offline) |
 | **Ligolo-ng** ⭐ | Modern TCP tunnel / pivoting tool (replaces chisel for many uses) |
+| **Lynis** ⭐ | Local Linux security audit |
+| **checksec** ⭐ | Binary hardening checks |
 | **Anonsurf** | Anonymize the whole system through Tor (Kali) |
 | **Anonym8** | Similar to anonsurf (auto-configures Tor + iptables) |
 | **TheFatRat** | (see Remote Access) |

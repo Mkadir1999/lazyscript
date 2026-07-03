@@ -124,12 +124,12 @@ if [[ "$DIR" != "/root/lscript" ]]
 then
 	echo -e "You didn't follow the github's simple install instructions.I will try to do it for you..."
 	[[ "$NONINTERACTIVE" -eq 0 ]] && sleep 4
-	if [[ -d /root/lscript ]]
+	if [[ -d /root/lscript && "$(realpath /root/lscript 2>/dev/null)" == "/root/lscript" ]]
 	then
-		rm -r /root/lscript
+		rm -rf /root/lscript
 	fi
 	mkdir -p /root/lscript
-	cp -r "$DIR"/* /root/lscript
+	cp -a "$DIR"/. /root/lscript
 	lscript_fix_line_endings /root/lscript
 	chmod +x /root/lscript/install.sh
 	chmod +x /root/lscript/lib/*.sh 2>/dev/null || true

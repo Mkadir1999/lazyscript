@@ -1,4 +1,4 @@
-# lazyscript v2.2.4 — Feature Reference
+# lazyscript v2.2.5 — Feature Reference
 
 **lazyscript** is a Bash automation toolkit for **Kali Linux** that wraps **100+ security tools** behind a single command: **`lazy`**.
 
@@ -45,6 +45,7 @@ lazy
 | `update` | Git-pull latest **lazyscript** from GitHub |
 | `update-kali` | Full **Kali OS** upgrade (apt update + full-upgrade + autoremove + autoclean) |
 | `doctor` | Health-check dependencies and paths |
+| `safeaudit` / `audit` | Guided passive/defensive checks |
 | `spoof` / `lab` | Training lab menu — DNS spoof, ARP MITM, email spoof, MAC, scope, audit log |
 | `labcheck` | Verify lab prerequisites (root, deps, scope) |
 | `refresh` | Git-pull all tools under `/root` |
@@ -136,6 +137,7 @@ lazy
 | **Naabu** ⭐ | Fast port scanner (ProjectDiscovery) |
 | **Sherlock** ⭐ | Hunt social media accounts by username (300+ sites) |
 | **Gowitness** ⭐ | Web screenshot recon (Chrome headless) |
+| **Amass** ⭐ | Passive/deep asset discovery and subdomain enumeration |
 
 ### Web / web-app
 
@@ -145,6 +147,8 @@ lazy
 | **patator** | Multi-protocol brute-forcer (SSH, FTP, HTTP, SMTP, MySQL, …) |
 | **Nuclei** ⭐ | (re-listed — used here for web-app CVE scanning) |
 | **ffuf** ⭐ | Fast Go web fuzzer (dirs, vhosts, parameters) |
+| **Feroxbuster** ⭐ | Fast recursive content discovery |
+| **WhatWeb** ⭐ | Web technology fingerprinting |
 | **Zeus-Scanner** | Advanced SQLi scanner (training only) |
 | **LFI-Suite** | Local File Inclusion scanner/exploit |
 | **FindSploit** | Search Exploit-DB / Rapid7 / packetstorm from terminal |
@@ -165,6 +169,8 @@ lazy
 | **Ghost-phisher** | Fake AP + DHCP + HTTP server combo |
 | **Kerbrute** ⭐ | AD Kerberos username enum / password spray |
 | **Ligolo-ng** ⭐ | Modern TCP tunnel / pivoting (replaces chisel) |
+| **Lynis** ⭐ | Local Linux security audit |
+| **checksec** ⭐ | Binary hardening checks |
 | **Anonsurf** | Anonymize the whole system through Tor (Kali) |
 | **Anonym8** | Similar to anonsurf (auto-configures Tor + iptables) |
 | **Angry IP Scanner** | Fast GUI IP / port scanner (Java) |
@@ -433,9 +439,10 @@ Map any single key to launch a tool or built-in action without navigating menus.
 
 ## Version
 
-Current release: **2.2.4** — see [Changelog](Changelog) for full history.
+Current release: **2.2.5** — see [Changelog](Changelog) for full history.
 
 Recent highlights:
 
+- **2.2.5** — added Amass, Feroxbuster, WhatWeb, Lynis, checksec, a guided Safe audit workflow, safer install/uninstall cleanup, and doctor checks for modern recon/defensive tools.
 - **2.2.4** — 13 broken/redirected GitHub URLs fixed (6 redirects, 4 dead→replaced, 3 deprecated with alternatives); `lscript_load_conf` no longer overrides env-set `LPATH`; `install_ligolo_ng` copy-paste URL bug fixed.
 - **2.2.3** — 20+ bug fixes; 10 new modern tools (Nuclei, ffuf, RustScan, Subfinder, httpx, Naabu, Ligolo-ng, Kerbrute, Sherlock, Gowitness); header banners and section comments added.

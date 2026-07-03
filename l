@@ -35,7 +35,7 @@
 ###############################################################################
 
 # set -x
-VERSION=2.2.4
+VERSION=2.2.5
 LSCRIPT_GITHUB_USER="Mkadir1999"
 LSCRIPT_GITHUB_REPO="lazyscript"
 LSCRIPT_GITHUB_BRANCH="main"
@@ -149,7 +149,7 @@ toolarray=(
 "dropit_frmw" "wifi_pumpkin" "veil" "leviathan" "fake_image" "avet" "gloom" "arcanus" "msfpc" "morphhta" "lfi" "unibyav" "demiguise" "dkmc" "sechub" "beef" "mitmf"
 	"fsociety" "arp_scan" "netool" "sqlmap" "patator" "zeus" "evil_droid" "nosqlmap" "eggshell" "zerodoor" "objection" "cromos" "yuki-chan" "socialfish" "autosploit" "blazy"
 "striker" "hyprpulse" "instaburst" "instagram-py" "datasploit" "sitebroker" "enigma"
-"nuclei" "ffuf" "rustscan" "subfinder" "httpx" "ligolo_ng" "kerbrute" "sherlock" "gowitness" "naabu"
+"nuclei" "ffuf" "rustscan" "subfinder" "httpx" "ligolo_ng" "kerbrute" "sherlock" "gowitness" "naabu" "amass" "feroxbuster" "whatweb" "lynis" "checksec"
 )
 #setting frequent stings
 	YNYES="("$YS"y"$CE"/"$YS"n"$CE")("$YS"Enter"$CE"=yes)"
@@ -345,7 +345,7 @@ function banner
 	echo -e "$COL  |$CE                The lazyscript for Kali                 $COL|$CE"
 	echo -e "$COL  '------------------------------------------------------------'$CE"
 	echo -e ""$BS"https://github.com/${LSCRIPT_GITHUB_USER}/${LSCRIPT_GITHUB_REPO}"$CE""
-	echo -e ""$BS"Quick commands:"$CE" "$YS"lazy"$CE" relaunch  "$YS"doctor"$CE" health  "$YS"spoof"$CE" labs  "$YS"scan"$CE" arp-scan"
+	echo -e ""$BS"Quick commands:"$CE" "$YS"lazy"$CE" relaunch  "$YS"doctor"$CE" health  "$YS"safeaudit"$CE" guided audit  "$YS"spoof"$CE" labs  "$YS"scan"$CE" arp-scan"
 	echo -e "                "$YS"if"$CE" ifconfig  "$YS"l"$CE" local IPs/gateways  "$YS"s"$CE" settings  "$YS"d"$CE" disclaimer"
 	echo -e "                "$YS"update"$CE" lazyscript update  "$YS"update-kali"$CE" apt upgrade"
 	echo -e ""
@@ -553,7 +553,7 @@ function checkifalready
 	then
 		# Reserved keys (already used by the script). Note: "l" is no
 		# longer reserved because the `l` launcher was removed in v2.2.4+.
-		if [[ "$CHECKKS" = "etercheck" || "$CHECKKS" = "eternalblue" || "$CHECKKS" = "changelog" || "$CHECKKS" = "wififb" || "$CHECKKS" = "nessusstop" || "$CHECKKS" = "nessusstart" || "$CHECKKS" = "pstop" || "$CHECKKS" = "pstart" || "$CHECKKS" = "astop" || "$CHECKKS" = "astart" || "$CHECKKS" = "settings" || "$CHECKKS" = "disclaimer" || "$CHECKKS" = "d" || "$CHECKKS" = "s" || "$CHECKKS" = "g" || "$CHECKKS" = "" || "$CHECKKS" = "if" || "$CHECKKS" = "ifconfig" || "$CHECKKS" = "interfaces" || "$CHECKKS" = "interface" || "$CHECKKS" = "errors" || "$CHECKKS" = "00" || "$CHECKKS" = "exit" || "$CHECKKS" = "update" || "$CHECKKS" = "lazy" || "$CHECKKS" = "spoof" || "$CHECKKS" = "lab" || "$CHECKKS" = "labcheck" || "$CHECKKS" = "d1" || "$CHECKKS" = "d2" || "$CHECKKS" = "d3" || "$CHECKKS" = "d4" || "$CHECKKS" = "d5" || "$CHECKKS" = "d6" || "$CHECKKS" = "d7" || "$CHECKKS" = "gg" || "$CHECKKS" = "ks" || "$CHECKKS" = "doctor" || "$CHECKKS" = "health" || "$CHECKKS" = "refresh" || "$CHECKKS" = "toolsup" || "$CHECKKS" = "profile" || "$CHECKKS" = "profiles" || "$CHECKKS" = "psave" || "$CHECKKS" = "pload" || "$CHECKKS" = "pexport" || "$CHECKKS" = "pimport" || "$CHECKKS" = "backup" || "$CHECKKS" = "restore" || "$CHECKKS" = "rotate" || "$CHECKKS" = "rotatelogs" || "$CHECKKS" = "update-kali" || "$CHECKKS" = "updatekali" || "$CHECKKS" = "kaliupdate" || "$CHECKKS" = "kali-update" || "$CHECKKS" = "update-kali-yes" || "$CHECKKS" = "updatekali-yes" ]]
+		if [[ "$CHECKKS" = "etercheck" || "$CHECKKS" = "eternalblue" || "$CHECKKS" = "changelog" || "$CHECKKS" = "wififb" || "$CHECKKS" = "nessusstop" || "$CHECKKS" = "nessusstart" || "$CHECKKS" = "pstop" || "$CHECKKS" = "pstart" || "$CHECKKS" = "astop" || "$CHECKKS" = "astart" || "$CHECKKS" = "settings" || "$CHECKKS" = "disclaimer" || "$CHECKKS" = "d" || "$CHECKKS" = "s" || "$CHECKKS" = "g" || "$CHECKKS" = "" || "$CHECKKS" = "if" || "$CHECKKS" = "ifconfig" || "$CHECKKS" = "interfaces" || "$CHECKKS" = "interface" || "$CHECKKS" = "errors" || "$CHECKKS" = "00" || "$CHECKKS" = "exit" || "$CHECKKS" = "update" || "$CHECKKS" = "lazy" || "$CHECKKS" = "spoof" || "$CHECKKS" = "lab" || "$CHECKKS" = "labcheck" || "$CHECKKS" = "safeaudit" || "$CHECKKS" = "safe-audit" || "$CHECKKS" = "audit" || "$CHECKKS" = "d1" || "$CHECKKS" = "d2" || "$CHECKKS" = "d3" || "$CHECKKS" = "d4" || "$CHECKKS" = "d5" || "$CHECKKS" = "d6" || "$CHECKKS" = "d7" || "$CHECKKS" = "gg" || "$CHECKKS" = "ks" || "$CHECKKS" = "doctor" || "$CHECKKS" = "health" || "$CHECKKS" = "refresh" || "$CHECKKS" = "toolsup" || "$CHECKKS" = "profile" || "$CHECKKS" = "profiles" || "$CHECKKS" = "psave" || "$CHECKKS" = "pload" || "$CHECKKS" = "pexport" || "$CHECKKS" = "pimport" || "$CHECKKS" = "backup" || "$CHECKKS" = "restore" || "$CHECKKS" = "rotate" || "$CHECKKS" = "rotatelogs" || "$CHECKKS" = "update-kali" || "$CHECKKS" = "updatekali" || "$CHECKKS" = "kaliupdate" || "$CHECKKS" = "kali-update" || "$CHECKKS" = "update-kali-yes" || "$CHECKKS" = "updatekali-yes" ]]
 		then
 			GOOD="0"
 			echo -e ""$RS"This shortcut is already in use by the script."$CE""
@@ -6143,11 +6143,42 @@ do
 	else
 		echo -e ""$RS"17"$CE") "$RS"Naabu"$CE"            Fast port scan (ProjectDiscovery)"
 	fi
+	if command -v amass >/dev/null 2>&1
+	then
+		echo -e ""$YS"18"$CE") Amass            Deep asset discovery / subdomains"
+	else
+		echo -e ""$RS"18"$CE") "$RS"Amass"$CE"            Deep asset discovery / subdomains"
+	fi
+	if command -v feroxbuster >/dev/null 2>&1
+	then
+		echo -e ""$YS"19"$CE") Feroxbuster      Fast content discovery"
+	else
+		echo -e ""$RS"19"$CE") "$RS"Feroxbuster"$CE"      Fast content discovery"
+	fi
+	if command -v whatweb >/dev/null 2>&1
+	then
+		echo -e ""$YS"20"$CE") WhatWeb          Web technology fingerprinting"
+	else
+		echo -e ""$RS"20"$CE") "$RS"WhatWeb"$CE"          Web technology fingerprinting"
+	fi
+	if command -v lynis >/dev/null 2>&1
+	then
+		echo -e ""$YS"21"$CE") Lynis            Local Linux security audit"
+	else
+		echo -e ""$RS"21"$CE") "$RS"Lynis"$CE"            Local Linux security audit"
+	fi
+	if command -v checksec >/dev/null 2>&1
+	then
+		echo -e ""$YS"22"$CE") checksec         Binary hardening checks"
+	else
+		echo -e ""$RS"22"$CE") "$RS"checksec"$CE"         Binary hardening checks"
+	fi
+	echo -e ""$YS"23"$CE") Safe audit       Guided passive/defensive checks"
 	if [[ -f /root/ngrok ]]
 	then
-		echo -e ""$YS"18"$CE") Ngrok            Public tunnel / port forward"
+		echo -e ""$YS"24"$CE") Ngrok            Public tunnel / port forward"
 	else
-		echo -e ""$RS"18"$CE") "$RS"Ngrok"$CE"            Public tunnel / port forward"
+		echo -e ""$RS"24"$CE") "$RS"Ngrok"$CE"            Public tunnel / port forward"
 	fi
 	echo -e ""$YS" b"$CE") Go back"
 	echo -e ""$YS" 0"$CE") EXIT"
@@ -6448,6 +6479,94 @@ do
 		fi
 	elif [[ "$OTHERT" = "18" ]]
 	then
+		if command -v amass >/dev/null 2>&1
+		then
+			echo -e ""$BS"Run: amass enum -passive -d <domain>"$CE""
+			echo -e "$PAKTGB"
+			$READAK
+		else
+			echo -e "$TNI"
+			read INSTALL
+			if [[ "$INSTALL" = "install" ]]
+			then
+				install_amass
+			else
+				continue
+			fi
+		fi
+	elif [[ "$OTHERT" = "19" ]]
+	then
+		if command -v feroxbuster >/dev/null 2>&1
+		then
+			echo -e ""$BS"Run: feroxbuster -u <url> -w <wordlist>"$CE""
+			echo -e "$PAKTGB"
+			$READAK
+		else
+			echo -e "$TNI"
+			read INSTALL
+			if [[ "$INSTALL" = "install" ]]
+			then
+				install_feroxbuster
+			else
+				continue
+			fi
+		fi
+	elif [[ "$OTHERT" = "20" ]]
+	then
+		if command -v whatweb >/dev/null 2>&1
+		then
+			echo -e ""$BS"Run: whatweb <url>"$CE""
+			echo -e "$PAKTGB"
+			$READAK
+		else
+			echo -e "$TNI"
+			read INSTALL
+			if [[ "$INSTALL" = "install" ]]
+			then
+				install_whatweb
+			else
+				continue
+			fi
+		fi
+	elif [[ "$OTHERT" = "21" ]]
+	then
+		if command -v lynis >/dev/null 2>&1
+		then
+			echo -e ""$BS"Run: lynis audit system"$CE""
+			echo -e "$PAKTGB"
+			$READAK
+		else
+			echo -e "$TNI"
+			read INSTALL
+			if [[ "$INSTALL" = "install" ]]
+			then
+				install_lynis
+			else
+				continue
+			fi
+		fi
+	elif [[ "$OTHERT" = "22" ]]
+	then
+		if command -v checksec >/dev/null 2>&1
+		then
+			echo -e ""$BS"Run: checksec --file=<binary>"$CE""
+			echo -e "$PAKTGB"
+			$READAK
+		else
+			echo -e "$TNI"
+			read INSTALL
+			if [[ "$INSTALL" = "install" ]]
+			then
+				install_checksec
+			else
+				continue
+			fi
+		fi
+	elif [[ "$OTHERT" = "23" ]]
+	then
+		safe_audit_menu
+	elif [[ "$OTHERT" = "24" ]]
+	then
 		ngrok_option
 	elif [[ "$OTHERT" = 00 ]]
 	then
@@ -6462,6 +6581,127 @@ do
 		exit
 	fi
 done
+}
+function safe_audit_menu
+{
+	while true
+	do
+		clear
+		TERMINALTITLE="SAFE AUDIT"
+		dash_calc
+		printf '\033]2;SAFE AUDIT\a'
+		echo -e ""$BS"Guided passive/defensive checks for authorized targets only."$CE""
+		echo -e ""
+		echo -e ""$YS" 1"$CE") Passive domain recon (amass + subfinder)"
+		echo -e ""$YS" 2"$CE") Web fingerprint (whatweb + httpx)"
+		echo -e ""$YS" 3"$CE") Local Linux audit (lynis)"
+		echo -e ""$YS" 4"$CE") Binary hardening check (checksec)"
+		echo -e ""$YS" b"$CE") Go back"
+		echo -e ""$YS" 0"$CE") EXIT"
+		echo -e "Choose: "
+		read -r SAFEOPT
+		clear
+		if [[ "$SAFEOPT" = "1" ]]
+		then
+			echo -e "Domain you own or are authorized to assess: "
+			read -r SAFEDOMAIN
+			[[ -z "$SAFEDOMAIN" ]] && continue
+			mkdir -p "$LPATH/reports"
+			SAFEOUT="$LPATH/reports/passive-recon-${SAFEDOMAIN//[^A-Za-z0-9._-]/_}-$(date +%Y%m%d-%H%M%S).txt"
+			{
+				echo "lazyscript passive recon report"
+				echo "domain=$SAFEDOMAIN"
+				echo "date=$(date -Iseconds 2>/dev/null || date)"
+				echo ""
+				if command -v amass >/dev/null 2>&1
+				then
+					echo "== amass enum -passive =="
+					amass enum -passive -d "$SAFEDOMAIN" 2>&1
+					echo ""
+				else
+					echo "amass not installed (type install from Other Tools -> Amass)."
+				fi
+				if command -v subfinder >/dev/null 2>&1
+				then
+					echo "== subfinder =="
+					subfinder -silent -d "$SAFEDOMAIN" 2>&1
+				else
+					echo "subfinder not installed."
+				fi
+			} | tee "$SAFEOUT"
+			echo -e ""$YS"Saved: $SAFEOUT"$CE""
+			echo -e "$PAKTGB"
+			$READAK
+		elif [[ "$SAFEOPT" = "2" ]]
+		then
+			echo -e "URL or host you own or are authorized to assess: "
+			read -r SAFEURL
+			[[ -z "$SAFEURL" ]] && continue
+			mkdir -p "$LPATH/reports"
+			SAFEOUT="$LPATH/reports/web-fingerprint-$(date +%Y%m%d-%H%M%S).txt"
+			{
+				echo "lazyscript web fingerprint report"
+				echo "target=$SAFEURL"
+				echo "date=$(date -Iseconds 2>/dev/null || date)"
+				echo ""
+				if command -v whatweb >/dev/null 2>&1
+				then
+					echo "== whatweb =="
+					whatweb "$SAFEURL" 2>&1
+					echo ""
+				else
+					echo "whatweb not installed (type install from Other Tools -> WhatWeb)."
+				fi
+				if command -v httpx >/dev/null 2>&1
+				then
+					echo "== httpx =="
+					printf '%s\n' "$SAFEURL" | httpx -silent -status-code -title -tech-detect 2>&1
+				else
+					echo "httpx not installed."
+				fi
+			} | tee "$SAFEOUT"
+			echo -e ""$YS"Saved: $SAFEOUT"$CE""
+			echo -e "$PAKTGB"
+			$READAK
+		elif [[ "$SAFEOPT" = "3" ]]
+		then
+			if command -v lynis >/dev/null 2>&1
+			then
+				lynis audit system
+			else
+				echo -e "$TNI"
+				read INSTALL
+				[[ "$INSTALL" = "install" ]] && install_lynis
+			fi
+			echo -e "$PAKTGB"
+			$READAK
+		elif [[ "$SAFEOPT" = "4" ]]
+		then
+			echo -e "Binary path: "
+			read -r SAFEBIN
+			[[ -z "$SAFEBIN" ]] && continue
+			if [[ ! -f "$SAFEBIN" ]]
+			then
+				echo -e ""$RS"File not found: $SAFEBIN"$CE""
+			elif command -v checksec >/dev/null 2>&1
+			then
+				checksec --file="$SAFEBIN"
+			else
+				echo -e "$TNI"
+				read INSTALL
+				[[ "$INSTALL" = "install" ]] && install_checksec
+			fi
+			echo -e "$PAKTGB"
+			$READAK
+		elif [[ "$SAFEOPT" = "back" || "$SAFEOPT" = "b" ]]
+		then
+			break
+		elif [[ "$SAFEOPT" = "0" ]]
+		then
+			clear
+			exit
+		fi
+	done
 }
 function findsploit_menu
 {
@@ -9855,6 +10095,9 @@ function main_options
 	elif [[ "$YORNAA" = "settings" || "$YORNAA" = "s" ]]
 	then
 		settings_menu
+	elif [[ "$YORNAA" = "safeaudit" || "$YORNAA" = "safe-audit" || "$YORNAA" = "audit" ]]
+	then
+		safe_audit_menu
 	elif [[ "$YORNAA" = "16" ]]
 	then
 		ngrok_option
@@ -10621,6 +10864,17 @@ function doctor_menu
 		doctor_check_item "leafpad (removed)" "command -v leafpad" "lscript now uses mousepad/gedit/nano."
 		doctor_check_item "msfupdate (removed)" "command -v msfupdate" "lscript now uses: apt-get install --only-upgrade -y metasploit-framework"
 		doctor_check_item "gvm (renamed openvas)" "command -v gvm-start" "OpenVAS was renamed to GVM in Kali 2021.3+."
+
+		echo -e ""
+		echo -e ""$YS"Modern recon / defensive audit:"$CE""
+		doctor_check_item "nuclei" "command -v nuclei" "Other Tools -> Nuclei"
+		doctor_check_item "subfinder" "command -v subfinder" "Other Tools -> Subfinder"
+		doctor_check_item "httpx" "command -v httpx" "Other Tools -> httpx"
+		doctor_check_item "amass" "command -v amass" "Other Tools -> Amass"
+		doctor_check_item "feroxbuster" "command -v feroxbuster" "Other Tools -> Feroxbuster"
+		doctor_check_item "whatweb" "command -v whatweb" "Other Tools -> WhatWeb"
+		doctor_check_item "lynis" "command -v lynis" "Other Tools -> Lynis"
+		doctor_check_item "checksec" "command -v checksec" "Other Tools -> checksec"
 
 		echo -e ""
 		echo -e ""$YS"lscript version:"$CE""
@@ -12189,6 +12443,65 @@ function profile_load
 		mkdir -p "$GOPATH/bin"
 		GO111MODULE=on go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
 		ln -sf "$GOPATH/bin/naabu" /usr/local/bin/naabu 2>/dev/null || true
+	}
+
+	function install_amass
+	{
+		# Passive/deep asset discovery. Kali's package is the most repeatable install path.
+		if command -v amass >/dev/null 2>&1
+		then
+			echo -e ""$YS"amass already installed."$CE""
+			return 0
+		fi
+		apt-get install -y amass
+	}
+
+	function install_feroxbuster
+	{
+		# Fast recursive content discovery.
+		if command -v feroxbuster >/dev/null 2>&1
+		then
+			echo -e ""$YS"feroxbuster already installed."$CE""
+			return 0
+		fi
+		apt-get install -y feroxbuster 2>/dev/null || {
+			apt-get install -y cargo 2>/dev/null || true
+			cargo install feroxbuster 2>/dev/null
+			[[ -f "$HOME/.cargo/bin/feroxbuster" ]] && ln -sf "$HOME/.cargo/bin/feroxbuster" /usr/local/bin/feroxbuster
+		}
+	}
+
+	function install_whatweb
+	{
+		# Web technology fingerprinting.
+		if command -v whatweb >/dev/null 2>&1
+		then
+			echo -e ""$YS"whatweb already installed."$CE""
+			return 0
+		fi
+		apt-get install -y whatweb
+	}
+
+	function install_lynis
+	{
+		# Local Linux security audit.
+		if command -v lynis >/dev/null 2>&1
+		then
+			echo -e ""$YS"lynis already installed."$CE""
+			return 0
+		fi
+		apt-get install -y lynis
+	}
+
+	function install_checksec
+	{
+		# Binary hardening checks.
+		if command -v checksec >/dev/null 2>&1
+		then
+			echo -e ""$YS"checksec already installed."$CE""
+			return 0
+		fi
+		apt-get install -y checksec
 	}
 
 		

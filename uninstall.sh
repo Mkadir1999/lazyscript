@@ -21,8 +21,8 @@ then
 	then
 		echo -e "Ok, uninstalling everything that has to do with lazyscript on your system"
 		sleep 4
-		if [ -d /usr/local/bin/lscript ]; then rm -r /usr/local/bin/lscript; fi
-		if [ -d /bin/lscript ]; then rm -r /bin/lscript; fi
+		if [ -d /usr/local/bin/lscript ] && [ "$(realpath /usr/local/bin/lscript 2>/dev/null)" = "/usr/local/bin/lscript" ]; then rm -rf /usr/local/bin/lscript; fi
+		if [ -d /bin/lscript ] && [ "$(realpath /bin/lscript 2>/dev/null)" = "/bin/lscript" ]; then rm -rf /bin/lscript; fi
 		# Remove the `lazy` symlink AND the (no-longer-installed) `l` symlink,
 		# in case an older install still left one around.
 		rm -f /usr/local/bin/lazy /usr/local/bin/l 2>/dev/null
