@@ -6,8 +6,15 @@ LSCRIPT_LAB_SOURCED=1
 LSCRIPT_LAB_SCOPE_FILE="${LPATH:-/root/lscript}/settings/lab_scope.txt"
 LSCRIPT_LAB_AUDIT_LOG="${LPATH:-/root/lscript}/logs/lab_audit.log"
 
+lscript_lab_refresh_paths()
+{
+	export LSCRIPT_LAB_SCOPE_FILE="${LPATH:-/root/lscript}/settings/lab_scope.txt"
+	export LSCRIPT_LAB_AUDIT_LOG="${LPATH:-/root/lscript}/logs/lab_audit.log"
+}
+
 lscript_lab_ensure_dirs()
 {
+	lscript_lab_refresh_paths
 	mkdir -p "${LPATH:-/root/lscript}/labs" "${LPATH:-/root/lscript}/logs" "${LPATH:-/root/lscript}/settings"
 	if [[ ! -f "${LPATH}/settings/lab_scope.example" ]]
 	then
@@ -19,6 +26,12 @@ lscript_lab_ensure_dirs()
 EOF
 	fi
 	[[ -f "$LSCRIPT_LAB_SCOPE_FILE" ]] || touch "$LSCRIPT_LAB_SCOPE_FILE"
+}
+
+lscript_open_text_file()
+{
+	local target="$1"
+	mousepad "$target" 2>/dev/null || gedit "$target" 2>/dev/null || nano "$target"
 }
 
 lscript_lab_audit()

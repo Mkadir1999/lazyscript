@@ -7852,19 +7852,17 @@ while true
 do
 	sm=0
 	clear
-	if [[ ! -d /bin/lscript/smtp ]]
-	then
-		mkdir /bin/lscript/smtp
-	fi
+	smtpdir="$LPATH/smtp"
+	mkdir -p "$smtpdir"
 	echo -e ""$RS"YOU SHOULD FIRST SIGN UP ON https://www.smtp2go.com AND VERIFY YOUR EMAIL."$CE""
 	echo -e ""$RS"THEN GO TO https://app.smtp2go.com/settings/users AND MAKE A USERNAME AND PASS."$CE""
 	echo -e ""$RS"      ########ALWAYS HAVE PERMISSION OF THE EMAILS YOU SPOOF########"$CE""
 	echo -e ""$RS"      ########DONT SEND VIRUSES , PHISHING OR ILLEGAL THINGS########"$CE""
-	if [[ ! -f /bin/lscript/smtp/smtpemail.txt ]]
+	if [[ ! -f "$smtpdir/smtpemail.txt" ]]
 	then
 		echo -e ""$YS" 1"$CE") Set your SMTP username and pass     "$RS"NOT SET"$CE""
 	else
-		read smtpemail < /bin/lscript/smtp/smtpemail.txt
+		read smtpemail < "$smtpdir/smtpemail.txt"
 		echo -e ""$YS" 1"$CE") Set your SMTP username and pass     Current: "$YS""$smtpemail""$CE""
 	fi
 	echo -e ""$YS" 2"$CE") Send a spoofed email"
@@ -7881,9 +7879,9 @@ do
 		echo -e "Enter your smtp password(find it here: https://app.smtp2go.com/settings/users ): "
 		read SMTPPASS
 		clear
-		echo "$SMTPEMAIL" > /bin/lscript/smtp/smtpemail.txt
-		echo "$SMTPPASS" > /bin/lscript/smtp/smtppass.txt 
-		echo -e "Credentials saved on /bin/lscript/smtp"
+		echo "$SMTPEMAIL" > "$smtpdir/smtpemail.txt"
+		echo "$SMTPPASS" > "$smtpdir/smtppass.txt"
+		echo -e "Credentials saved on $smtpdir"
 		sleep 3
 	elif [[ "$SMTP" = "4" ]]
 	then
@@ -7894,16 +7892,16 @@ do
 		read -e -n 1 -r
 	elif [[ "$SMTP" = "3" ]]
 	then
-		if [[ -f /bin/lscript/smtp/smtpemail.txt ]]
+		if [[ -f "$smtpdir/smtpemail.txt" ]]
 		then
-			rm /bin/lscript/smtp/smtpemail.txt
+			rm "$smtpdir/smtpemail.txt"
 			echo -e "Username removed"
 		else
 			echo -e "Not username found"
 		fi
-		if [[ -f /bin/lscript/smtp/smtppass.txt ]]
+		if [[ -f "$smtpdir/smtppass.txt" ]]
 		then
-			rm /bin/lscript/smtp/smtppass.txt
+			rm "$smtpdir/smtppass.txt"
 			echo -e "Password removed"
 		else
 			echo -e "Not password found"
@@ -7923,12 +7921,12 @@ do
 		while true
 		do
 		clear
-		if [[ ! -f /bin/lscript/smtp/smtpemail.txt ]]
+		if [[ ! -f "$smtpdir/smtpemail.txt" ]]
 		then
 			echo -e "No smtp username found."
 			sm=1
 		fi
-		if [[ ! -f /bin/lscript/smtp/smtppass.txt ]]
+		if [[ ! -f "$smtpdir/smtppass.txt" ]]
 		then
 			echo -e "No smtp pass found."
 			sm=1
@@ -7937,8 +7935,8 @@ do
 		then
 			break
 		fi
-		read smtppass < /bin/lscript/smtp/smtppass.txt
-		read smtpemail < /bin/lscript/smtp/smtpemail.txt
+		read smtppass < "$smtpdir/smtppass.txt"
+		read smtpemail < "$smtpdir/smtpemail.txt"
 		clear
 		echo -e "Your username is "$RS""$smtpemail""$CE""
 		echo -e ""
@@ -7965,7 +7963,15 @@ do
 		echo -e "Press "$YS"enter"$CE" to send the message to "$TARGETSEMAIL""
 		read 
 		clear
+		if ! command -v sendemail >/dev/null 2>&1
+		then
+			echo -e ""$RS"sendemail is not installed. apt-get install -y sendemail"$CE""
+			echo -e "$PAKTGB"
+			read -e -n 1 -r
+			break
+		fi
 		sendemail -f $SPOOFEDEMAIL -t $TARGETSEMAIL -u $SUBJECTEMAIL -m $MESSAGEEMAIL -s "$SMTPSERVER":"$SMTPPORT" -xu "$smtpemail" -xp "$smtppass"
+		lscript_lab_audit "smtp_spoof" "server=$SMTPSERVER port=$SMTPPORT target=$TARGETSEMAIL from=$SPOOFEDEMAIL"
 		echo -e "$PAKTGB"
 		read -e -n 1 -r
 		break
@@ -10860,6 +10866,7 @@ function lab_view_creds
 }
 function lab_scope_menu
 {
+	lscript_lab_ensure_dirs
 	while true
 	do
 		clear
@@ -10907,7 +10914,7 @@ function lab_scope_menu
 			sleep 1
 		elif [[ "$LSCH" = "e" ]]
 		then
-			mousepad "$LSCRIPT_LAB_SCOPE_FILE" 2>/dev/null || gedit "$LSCRIPT_LAB_SCOPE_FILE" 2>/dev/null || nano "$LSCRIPT_LAB_SCOPE_FILE"
+			lscript_open_text_file "$LSCRIPT_LAB_SCOPE_FILE"
 		fi
 	done
 }
@@ -10930,7 +10937,7 @@ function lab_dns_spoof_wizard
 	then
 		cp "$LPATH/labs/hosts.lab.example" "$HOSTS" 2>/dev/null || touch "$HOSTS"
 		echo -e "Created $HOSTS - edit it, then run again."
-		mousepad "$HOSTS" 2>/dev/null || nano "$HOSTS"
+		lscript_open_text_file "$HOSTS"
 		return
 	fi
 	export LAB_IF="$LABIF"
@@ -10994,6 +11001,12 @@ function lab_mac_restore
 	echo -e "Interface ["$YS"Enter"$CE"=$WLANN"]: "
 	read -r MACIF
 	[[ -z "$MACIF" ]] && MACIF="$WLANN"
+	if ! command -v macchanger >/dev/null 2>&1
+	then
+		echo -e ""$RS"macchanger not installed."$CE""
+		sleep 2
+		return
+	fi
 	ifconfig "$MACIF" down
 	macchanger -p "$MACIF"
 	ifconfig "$MACIF" up
