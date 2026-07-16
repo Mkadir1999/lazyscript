@@ -37,21 +37,21 @@ function dash_calc
 }
 function remove_temps
 {
-	if [[ -f /root/lscript/tempairodump-01.cap ]]
+	if [[ -f "$LPATH/tempairodump-01.cap" ]]
 	then
-		rm /root/lscript/tempairodump-01.cap
+		rm "$LPATH/tempairodump-01.cap"
 	fi
-	if [[ -f /root/lscript/tempairodump-01.csv ]]
+	if [[ -f "$LPATH/tempairodump-01.csv" ]]
 	then
-		rm /root/lscript/tempairodump-01.csv
+		rm "$LPATH/tempairodump-01.csv"
 	fi
-	if [[ -f /root/lscript/tempairodump-01.kismet.netxml ]]
+	if [[ -f "$LPATH/tempairodump-01.kismet.netxml" ]]
 	then
-		rm /root/lscript/tempairodump-01.kismet.netxml
+		rm "$LPATH/tempairodump-01.kismet.netxml"
 	fi
-	if [[ -f /root/lscript/tempairodump-01.kismet.csv ]]
+	if [[ -f "$LPATH/tempairodump-01.kismet.csv" ]]
 	then
-		rm /root/lscript/tempairodump-01.kismet.csv
+		rm "$LPATH/tempairodump-01.kismet.csv"
 	fi
 }
 function pre_scan
@@ -69,7 +69,7 @@ function pre_scan
 		if [[ "$CHANNELSL" = "" ]]
 		then
 			JS=1
-			airodump-ng $WLANNM -w /root/lscript/tempairodump
+			airodump-ng $WLANNM -w "$LPATH/tempairodump"
 		elif [[ "$CHANNELSL" = "back" || "$CHANNELSL" = "b" ]]
 		then
 			clear
@@ -78,7 +78,7 @@ function pre_scan
 		else
 			#~ FJC=0
 			JC=1
-			airodump-ng -c $CHANNELSL $WLANNM -w /root/lscript/tempairodump
+			airodump-ng -c $CHANNELSL $WLANNM -w "$LPATH/tempairodump"
 		fi
 	fi
 		ap_sort_and_choose
@@ -134,7 +134,7 @@ done
 }
 function autoapselect
 {
-file="/root/lscript/tempairodump-01.csv"
+file="$LPATH/tempairodump-01.csv"
 if [[ -f "$file" ]]
 then
 	lines=$(cat $file | awk '/WPA|WPA2|OPN|WEP/ {print}' | awk 'END{print NR}')

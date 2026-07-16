@@ -124,7 +124,7 @@ then
 	lscript_term --quiet --geometry 70x10+0+0 --disown -- bash "$LPATH/lh2"
 	HANDFORDEAUTH="/root/handshakes/$HANDF-01.csv"
 	export HANDFORDEAUTH
-	airodump-ng --bssid $TARGB -c $TARGC -w /root/handshakes/$HANDF $WLANNM # & jobs -p > /root/lscript/dpidd.txt
+	airodump-ng --bssid $TARGB -c $TARGC -w /root/handshakes/$HANDF $WLANNM # & jobs -p > "$LPATH/dpidd.txt"
 	#~ airodump-ng --bssid $TARGB -c $TARGC -w /root/handshakes/$HANDF $WLANNM
 	#kill the deauth menu if running
 		if [[ -f "$LPATH"/dpid.txt ]]
@@ -231,7 +231,7 @@ fi
 }
 function autoapselect
 {
-file="/root/lscript/tempairodump-01.csv"
+file="$LPATH/tempairodump-01.csv"
 if [[ -f "$file" ]]
 then
 	lines=$(cat $file | awk '/WPA|WPA2|OPN|WEP/ {print}' | awk 'END{print NR}')
@@ -492,7 +492,7 @@ do
 		then
 			FJC=0
 			JC=1
-			airodump-ng $WLANNM -w /root/lscript/tempairodump
+			airodump-ng $WLANNM -w "$LPATH/tempairodump"
 		elif [[ "$CHANNELSL" = "back" || "$CHANNELSL" = "b" ]]
 		then
 			clear
@@ -501,7 +501,7 @@ do
 		else
 			FJC=0
 			JC=1
-			airodump-ng -c $CHANNELSL $WLANNM -w /root/lscript/tempairodump
+			airodump-ng -c $CHANNELSL $WLANNM -w "$LPATH/tempairodump"
 		fi
 	fi
 		ap_sort_and_choose
@@ -517,8 +517,8 @@ do
 }
 function remove_temps
 {
-		rm -f /root/lscript/tempairodump*		
-		rm -f /root/lscript/dpid*.txt
+		rm -f "$LPATH"/tempairodump*		
+		rm -f "$LPATH"/dpid*.txt
 }
 function validate_with_pyrit
 {

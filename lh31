@@ -1,4 +1,6 @@
 #! /bin/bash
+LPATH="${LPATH:-/root/lscript}"
+export LPATH
 #############DEFAULTS###############
 #setting yellow-start 
 YS="\e[1;33m"
@@ -16,7 +18,7 @@ PAKTGB="Press "$YS"any key$CE to go back..."
 
 ####################################
 printf '\033]2;REAVER\a' &&
-WLANNM=$(cat /root/lscript/wlanmon.txt)
+WLANNM=$(cat "$LPATH/wlanmon.txt" 2>/dev/null)
 export WLANNM
 if [[ "$GLV" = "2" ]]
 then

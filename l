@@ -12269,7 +12269,7 @@ function profile_load
 		if [[ "$cloned" == 1 ]]
 		then
 			cd
-			git clone $gitlink
+			git clone "$gitlink"
 			chmod 777 -R Dr0p1t-Framework
 			cd Dr0p1t-Framework
 			chmod +x install.sh

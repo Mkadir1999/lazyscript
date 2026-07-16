@@ -1,5 +1,7 @@
 #! /bin/bash
-WLANNM=$(cat /root/lscript/wlanmon.txt)
+LPATH="${LPATH:-/root/lscript}"
+export LPATH
+WLANNM=$(cat "$LPATH/wlanmon.txt" 2>/dev/null)
 export WLANNM
 printf '\033]2;CAPTURING IVs\a'
 echo -e "Leave me opened."

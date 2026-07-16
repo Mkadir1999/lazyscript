@@ -1,5 +1,5 @@
 #!/bin/bash
-LPATH="/root/lscript"
+LPATH="${LPATH:-/root/lscript}"
 export LPATH
 DPIDDD=$$
 echo "$DPIDDD" > "$LPATH/dpiddd.txt"
