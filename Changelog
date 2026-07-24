@@ -1,3 +1,14 @@
+2.2.9
+==== Home UI + docs polish ====
+
+- REDESIGNED CLI main menu (`banner`): stronger LAZY/2 brand block, clearer
+  Quick commands / Wireless / Tool menus sections, ASCII-safe layout.
+- FIXED typo: Keyboard shortucts -> Keyboard shortcuts.
+- REDESIGNED GitHub README: cleaner hero, compact "What you get", tool catalogs
+  deferred to FEATURES.md / TOOLS.md; troubleshooting kept and version-synced.
+- SYNCED FEATURES.md / version.txt to 2.2.9.
+- CONFIRMED lab DNS/ARP launchers still use env LPATH=... bash "$LPATH/labs/...".
+
 2.2.8
 ==== Audit completion (steps 3–12) ====
 

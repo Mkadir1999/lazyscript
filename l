@@ -35,7 +35,7 @@
 ###############################################################################
 
 # set -x
-VERSION=2.2.8
+VERSION=2.2.9
 LSCRIPT_GITHUB_USER="Mkadir1999"
 LSCRIPT_GITHUB_REPO="lazyscript"
 LSCRIPT_GITHUB_BRANCH="main"
@@ -58,7 +58,7 @@ unset _lscript_lib
 HOWMANYTOOLS=53
 BACKL="0"
 DONATIONS=13
-LATESTCHANGELOGLINES=8
+LATESTCHANGELOGLINES=12
 cd
 #############DEFAULTS###############
 function defaults_l
@@ -341,66 +341,73 @@ function check_wlans
 function banner
 {
 	check_wlans
+	managed_spaces
+	monitor_spaces
 	echo -e ""
-	echo -e "$COL  .------------------------------------------------------------.$CE"
-	echo -e "$COL  |$CE                          LAZY/2                           $COL|$CE  v$VERSION"
-	echo -e "$COL  |$CE              WiFi  |  MITM  |  Tools  |  Labs           $COL|$CE   by $COL$LSCRIPT_AUTHOR$CE"
-	echo -e "$COL  |$CE                The lazyscript for Kali                 $COL|$CE"
-	echo -e "$COL  '------------------------------------------------------------'$CE"
-	echo -e ""$BS"https://github.com/${LSCRIPT_GITHUB_USER}/${LSCRIPT_GITHUB_REPO}"$CE""
-	echo -e ""$BS"Quick commands:"$CE" "$YS"lazy"$CE" relaunch  "$YS"doctor"$CE" health  "$YS"safeaudit"$CE" guided audit  "$YS"spoof"$CE" labs  "$YS"scan"$CE" arp-scan"
-	echo -e "                "$YS"if"$CE" ifconfig  "$YS"l"$CE" local IPs/gateways  "$YS"s"$CE" settings  "$YS"d"$CE" disclaimer"
-	echo -e "                "$YS"update"$CE" lazyscript update  "$YS"update-kali"$CE" apt upgrade"
+	echo -e "$COL  ==============================================================$CE"
+	echo -e "$COL  |$CE                                                            $COL|$CE"
+	echo -e "$COL  |$CE                         "$YS"LAZY/2"$CE"                            $COL|$CE"
+	echo -e "$COL  |$CE                    by $COL$LSCRIPT_AUTHOR$CE  -  v$VERSION                   $COL|$CE"
+	echo -e "$COL  |$CE                                                            $COL|$CE"
+	echo -e "$COL  |$CE           WiFi / MITM / Tools / Labs / Doctor             $COL|$CE"
+	echo -e "$COL  |$CE              Training toolkit for Kali Linux              $COL|$CE"
+	echo -e "$COL  |$CE                                                            $COL|$CE"
+	echo -e "$COL  ==============================================================$CE"
+	echo -e "  "$BS"https://github.com/${LSCRIPT_GITHUB_USER}/${LSCRIPT_GITHUB_REPO}"$CE""
 	echo -e ""
-	echo -e ""$BS"Wireless & system:"$CE""
+	echo -e "  "$BS"Quick commands"$CE""
+	echo -e "    "$YS"lazy"$CE" relaunch   "$YS"doctor"$CE" health   "$YS"safeaudit"$CE" audit   "$YS"spoof"$CE" labs"
+	echo -e "    "$YS"scan"$CE" arp-scan   "$YS"update"$CE" script   "$YS"update-kali"$CE" OS    "$YS"ks"$CE" shortcuts"
+	echo -e "    "$YS"if"$CE" ifconfig     "$YS"l"$CE" local IPs     "$YS"s"$CE" settings      "$YS"d"$CE" disclaimer"
+	echo -e ""
+	echo -e "  "$BS"Wireless & system"$CE""
 	if [[ "$WLANCHECKING" = "" ]]
 	then
-		echo -e ""$RS" 1"$CE") Enable "$RS"$WLANN"$CE"${SPACESN}"$RS"d1"$CE") Disable "$RS"$WLANN"$CE"${SPACESN}  "$RS"|"$CE" "$YS"start"$CE") Start monitor mode"
-		echo -e ""$RS" 2"$CE") Enable "$RS"$WLANNM"$CE"${SPACESM}"$RS"d2"$CE") Disable "$RS"$WLANNM"$CE"${SPACESM}  "$RS"|"$CE"  "$YS"stop"$CE") Stop monitor mode"
+		echo -e "    "$RS" 1"$CE") Enable "$RS"$WLANN"$CE"${SPACESN}  "$RS"d1"$CE") Disable "$RS"$WLANN"$CE"${SPACESN}  "$YS"start"$CE") Monitor on"
+		echo -e "    "$RS" 2"$CE") Enable "$RS"$WLANNM"$CE"${SPACESM}  "$RS"d2"$CE") Disable "$RS"$WLANNM"$CE"${SPACESM}  "$YS"stop"$CE")  Monitor off"
 	else
-		echo -e ""$YS" 1"$CE") Enable $WLANN${SPACESN}"$YS"d1"$CE") Disable $WLANN${SPACESN}  "$RS"|"$CE" "$YS"start"$CE") Start monitor mode"
-		echo -e ""$YS" 2"$CE") Enable $WLANNM${SPACESM}"$YS"d2"$CE") Disable $WLANNM${SPACESM}  "$RS"|"$CE"  "$YS"stop"$CE") Stop monitor mode"
+		echo -e "    "$YS" 1"$CE") Enable $WLANN${SPACESN}  "$YS"d1"$CE") Disable $WLANN${SPACESN}  "$YS"start"$CE") Monitor on"
+		echo -e "    "$YS" 2"$CE") Enable $WLANNM${SPACESM}  "$YS"d2"$CE") Disable $WLANNM${SPACESM}  "$YS"stop"$CE")  Monitor off"
 	fi
-	echo -e ""$YS" 3"$CE") Change MAC        "$YS"d3"$CE") Restore original MAC"
+	echo -e "    "$YS" 3"$CE") Change MAC          "$YS"d3"$CE") Restore original MAC"
 	if [[ -f /usr/bin/anonym8 ]]
 	then
-	echo -e ""$YS" 4"$CE") Enable anonym8    "$YS"d4"$CE") Disable anonym8      "$RS"|"$CE""$YS"errors"$CE") Fix errors"
+		echo -e "    "$YS" 4"$CE") Enable anonym8      "$YS"d4"$CE") Disable anonym8       "$YS"errors"$CE") Fix errors"
 	else
-	echo -e ""$RS" 4"$CE") Enable anonym8    "$RS"d4"$CE") Disable anonym8      "$RS"|"$CE""$YS"errors"$CE") Fix errors"
+		echo -e "    "$RS" 4"$CE") Enable anonym8      "$RS"d4"$CE") Disable anonym8       "$YS"errors"$CE") Fix errors"
 	fi
 	if [[ -f /usr/bin/anonsurf ]]
 	then
-	echo -e ""$YS" 5"$CE") Enable anonsurf   "$YS"d5"$CE") Disable anonsurf     "$RS"|"$CE"    "$YS"ks"$CE") Keyboard shortucts"
-	echo -e ""$YS" 6"$CE") Anonsurf's status "$YS"d6"$CE") Restart anonsurf     "$RS"|"$CE""$YS"     d"$CE") Disclaimer"
+		echo -e "    "$YS" 5"$CE") Enable anonsurf     "$YS"d5"$CE") Disable anonsurf      "$YS"ks"$CE") Keyboard shortcuts"
+		echo -e "    "$YS" 6"$CE") Anonsurf status     "$YS"d6"$CE") Restart anonsurf      "$YS"d"$CE")  Disclaimer"
 	else
-	echo -e ""$RS" 5"$CE") Enable anonsurf   "$RS"d5"$CE") Disable anonsurf     "$RS"|"$CE"    "$YS"ks"$CE") Keyboard shortucts"
-	echo -e ""$RS" 6"$CE") Anonsurf's status "$RS"d6"$CE") Restart anonsurf     "$RS"|"$CE"     "$YS"d"$CE") Disclaimer"
+		echo -e "    "$RS" 5"$CE") Enable anonsurf     "$RS"d5"$CE") Disable anonsurf      "$YS"ks"$CE") Keyboard shortcuts"
+		echo -e "    "$RS" 6"$CE") Anonsurf status     "$RS"d6"$CE") Restart anonsurf      "$YS"d"$CE")  Disclaimer"
 	fi
-	echo -e ""$YS" 7"$CE") View public IP                             "$RS"|"$CE"     "$YS"s"$CE") Settings menu"
-	echo -e ""$YS" 8"$CE") View MAC"
+	echo -e "    "$YS" 7"$CE") View public IP                               "$YS"s"$CE")  Settings"
+	echo -e "    "$YS" 8"$CE") View MAC"
 	echo -e ""
-	echo -e ""$BS"Tool menus:"$CE""
-	echo -e ""$YS" 9"$CE") TOOLS             "$YS"15"$CE") Lab / spoof menu        "$YS"22"$CE") Show bandwidth"
+	echo -e "  "$BS"Tool menus"$CE""
+	echo -e "    "$YS" 9"$CE") TOOLS               "$YS"15"$CE") Lab / spoof          "$YS"22"$CE") Bandwidth"
 	if [[ -f /root/ngrok ]]
 	then
-		echo -e ""$YS"10"$CE") Handshake         "$YS"16"$CE") Ngrok port forward"
+		echo -e "    "$YS"10"$CE") Handshake           "$YS"16"$CE") Ngrok port forward"
 	else
-		echo -e ""$YS"10"$CE") Handshake         "$RS"16"$CE") "$RS"Ngrok"$CE" port forward"
+		echo -e "    "$YS"10"$CE") Handshake           "$RS"16"$CE") Ngrok (not installed)"
 	fi
 	if [[ -f /usr/local/bin/howdoi ]]
 	then
-		echo -e ""$YS"11"$CE") Find WPS pin      "$YS"17"$CE") Ask (Howdoi tool)"
+		echo -e "    "$YS"11"$CE") Find WPS pin        "$YS"17"$CE") Ask (Howdoi)"
 	else
-		echo -e ""$YS"11"$CE") Find WPS pin      "$RS"17"$CE") Ask ("$RS"Howdoi"$CE" tool)"
+		echo -e "    "$YS"11"$CE") Find WPS pin        "$RS"17"$CE") Ask (Howdoi not installed)"
 	fi
-	echo -e ""$YS"12"$CE") WEP menu          "$YS"18"$CE") Auto-exploit browser"
-	echo -e ""$YS"13"$CE") MITM              "$YS"19"$CE") Geolocate an IP"
-	echo -e ""$YS"14"$CE") Metasploit        "$YS"20"$CE") Bruteforce login"   
-	echo -e ""$YS" 0"$CE") Exit              "$YS"21"$CE") Sqlmap automated"
-	echo "Choose: "
+	echo -e "    "$YS"12"$CE") WEP menu            "$YS"18"$CE") Auto-exploit browser"
+	echo -e "    "$YS"13"$CE") MITM                "$YS"19"$CE") Geolocate an IP"
+	echo -e "    "$YS"14"$CE") Metasploit          "$YS"20"$CE") Bruteforce login"
+	echo -e "    "$YS" 0"$CE") Exit                "$YS"21"$CE") Sqlmap automated"
+	echo -e ""
+	echo -n "  Choose: "
 	read -e YORNAA
-	#~ echo "$YORNNA"
-	#~ history -s "$YORNNA"
 	clear
 }
 function enable_wlan
