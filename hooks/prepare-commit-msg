@@ -1,0 +1,16 @@
+#!/bin/sh
+# Strip AI/editor attribution trailers from commit messages before they land.
+MSG_FILE="$1"
+[ -n "$MSG_FILE" ] && [ -f "$MSG_FILE" ] || exit 0
+
+TMP="${MSG_FILE}.strip.$$"
+# Portable filter (works in Git Bash on Windows and Linux).
+grep -viE \
+  -e '^Co-authored-by:.*(Cursor|Claude|Anthropic|Copilot|OpenAI)' \
+  -e '^Signed-off-by:.*(Cursor|Claude|Anthropic)' \
+  -e '^Made-with:.*(Cursor|Claude)' \
+  -e '^Generated-by:.*(Cursor|Claude)' \
+  -e '^Assisted-by:.*(Cursor|Claude)' \
+  "$MSG_FILE" > "$TMP" 2>/dev/null && mv "$TMP" "$MSG_FILE" || rm -f "$TMP"
+
+exit 0

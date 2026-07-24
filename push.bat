@@ -33,7 +33,13 @@ if errorlevel 1 (
     exit /b 1
 )
 
-:: --- Step 3: Stage everything ---
+:: --- Step 2b: Install attribution stripper hook (no Cursor/Claude in commits) ---
+if not exist "hooks\prepare-commit-msg" goto after_hook
+if not exist ".git\hooks" mkdir ".git\hooks" >nul 2>&1
+copy /Y "hooks\prepare-commit-msg" ".git\hooks\prepare-commit-msg" >nul
+:after_hook
+
+:: --- Step 3: Stage everything (respects .gitignore) ---
 echo  [1/4] Staging files...
 git add -A
 echo       Done.
@@ -55,7 +61,7 @@ if not errorlevel 1 (
 :: --- Step 5: Build commit message with timestamp ---
 for /f "tokens=1-3 delims=/ " %%a in ('date /t') do set TODAY=%%a-%%b-%%c
 for /f "tokens=1-2 delims=: " %%a in ('time /t') do set NOW=%%a%%b
-set MSG=fix: hardcoded paths - replace /root/lscript with $LPATH [%TODAY% %NOW%]
+set MSG=Update lazyscript [%TODAY% %NOW%]
 
 echo  [2/4] Committing...
 echo       msg: !MSG!
@@ -63,6 +69,15 @@ git commit -m "!MSG!"
 if errorlevel 1 (
     echo  [ERROR] Commit failed.
     echo.
+    pause
+    exit /b 1
+)
+
+:: Reject if Cursor/Claude trailers somehow remain
+git log -1 --format=%%B | findstr /I /C:"Co-authored-by: Cursor" /C:"Co-authored-by: Claude" /C:"Made-with: Cursor" /C:"Made-with: Claude" >nul 2>&1
+if not errorlevel 1 (
+    echo  [ERROR] Commit still mentions Cursor/Claude. Aborting push.
+    echo  Turn off: Cursor Settings - Agents - Attribution (Commit + PR)
     pause
     exit /b 1
 )
